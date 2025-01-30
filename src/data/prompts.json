@@ -1,0 +1,26 @@
+{
+  "categories": ["All", "Career", "Gym Plan", "Growth Hack", "Productivity"],
+  "prompts": [
+    {
+      "id": 1,
+      "title": "Professional Email Writer",
+      "content": "Write a professional email about [topic] that is concise, clear, and maintains a friendly yet formal tone.",
+      "category": "Career",
+      "placeholders": ["topic"]
+    },
+    {
+      "id": 2,
+      "title": "Personalized Workout Plan",
+      "content": "Create a detailed 4-week workout plan for [goal] with progressive overload, considering my fitness level [level] and available equipment [equipment].",
+      "category": "Gym Plan",
+      "placeholders": ["goal", "level", "equipment"]
+    },
+    {
+      "id": 3,
+      "title": "Content Virality Strategy",
+      "content": "Analyze [content piece] and provide specific strategies to increase its viral potential across social media platforms.",
+      "category": "Growth Hack",
+      "placeholders": ["content piece"]
+    }
+  ]
+} 

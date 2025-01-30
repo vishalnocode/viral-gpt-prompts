@@ -4,35 +4,14 @@ import { PromptGrid } from "@/components/PromptGrid";
 import { AddPromptForm } from "@/components/AddPromptForm";
 import type { Prompt } from "@/components/PromptCard";
 import { useToast } from "@/components/ui/use-toast";
+import promptData from "@/data/prompts.json";
 
 const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState<Category>("All");
   const [isAdmin] = useState(false);
   const { toast } = useToast();
-  const [categories, setCategories] = useState<Category[]>(["All", "Career", "Gym Plan", "Growth Hack", "Productivity"]);
-  const [prompts, setPrompts] = useState<Prompt[]>([
-    {
-      id: 1,
-      title: "Professional Email Writer",
-      content: "Write a professional email about [topic] that is concise, clear, and maintains a friendly yet formal tone.",
-      category: "Career",
-      usageCount: 0
-    },
-    {
-      id: 2,
-      title: "Personalized Workout Plan",
-      content: "Create a detailed 4-week workout plan for [goal] with progressive overload, considering my fitness level [level] and available equipment [equipment].",
-      category: "Gym Plan",
-      usageCount: 0
-    },
-    {
-      id: 3,
-      title: "Content Virality Strategy",
-      content: "Analyze [content piece] and provide specific strategies to increase its viral potential across social media platforms.",
-      category: "Growth Hack",
-      usageCount: 0
-    }
-  ]);
+  const [categories, setCategories] = useState<Category[]>(promptData.categories);
+  const [prompts, setPrompts] = useState<Prompt[]>(promptData.prompts);
 
   const handleAddPrompt = (newPrompt: { title: string; content: string; category: Category }) => {
     setPrompts([
@@ -40,9 +19,14 @@ const Index = () => {
       {
         id: prompts.length + 1,
         ...newPrompt,
-        usageCount: 0
+        placeholders: extractPlaceholders(newPrompt.content)
       },
     ]);
+  };
+
+  const extractPlaceholders = (content: string): string[] => {
+    const matches = content.match(/\[(.*?)\]/g) || [];
+    return matches.map(match => match.slice(1, -1));
   };
 
   const handleAddCategory = (newCategory: string) => {
@@ -59,14 +43,6 @@ const Index = () => {
       title: "Category added",
       description: "New category has been added successfully.",
     });
-  };
-
-  const handlePromptUsed = (promptId: number) => {
-    setPrompts(prompts.map(prompt => 
-      prompt.id === promptId 
-        ? { ...prompt, usageCount: (prompt.usageCount || 0) + 1 }
-        : prompt
-    ));
   };
 
   return (
@@ -92,7 +68,6 @@ const Index = () => {
       <PromptGrid
         prompts={prompts}
         category={selectedCategory}
-        onPromptUsed={handlePromptUsed}
       />
     </div>
   );

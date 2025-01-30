@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Copy, Check } from "lucide-react";
+import { Copy } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import {
   Dialog,
@@ -11,119 +11,89 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
-export interface Prompt {
+export type Prompt = {
   id: number;
   title: string;
   content: string;
-  category: string;
-  usageCount?: number;
-}
+  category: Category;
+  placeholders: string[];
+};
 
 interface PromptCardProps {
   prompt: Prompt;
-  onPromptUsed: (promptId: number) => void;
 }
 
-export const PromptCard = ({ prompt, onPromptUsed }: PromptCardProps) => {
-  const [copied, setCopied] = useState(false);
+export const PromptCard = ({ prompt }: PromptCardProps) => {
+  const [placeholderValues, setPlaceholderValues] = useState<Record<string, string>>({});
+  const [finalPrompt, setFinalPrompt] = useState(prompt.content);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [userInput, setUserInput] = useState("");
   const { toast } = useToast();
 
-  const copyToClipboard = async (customizedPrompt: string) => {
-    try {
-      await navigator.clipboard.writeText(customizedPrompt);
-      setCopied(true);
-      onPromptUsed(prompt.id);
-      toast({
-        title: "Copied to clipboard",
-        description: "The customized prompt has been copied to your clipboard.",
-      });
-      setTimeout(() => setCopied(false), 2000);
-    } catch (err) {
-      toast({
-        title: "Failed to copy",
-        description: "Please try again.",
-        variant: "destructive",
-      });
-    }
+  const handlePlaceholderChange = (placeholder: string, value: string) => {
+    const newValues = { ...placeholderValues, [placeholder]: value };
+    setPlaceholderValues(newValues);
+    
+    let updatedPrompt = prompt.content;
+    Object.entries(newValues).forEach(([key, value]) => {
+      updatedPrompt = updatedPrompt.replace(`[${key}]`, value);
+    });
+    setFinalPrompt(updatedPrompt);
   };
 
-  const handleCopyClick = () => {
-    setIsDialogOpen(true);
-  };
-
-  const handleConfirm = () => {
-    if (!userInput.trim()) {
-      toast({
-        title: "Input required",
-        description: "Please enter your topic/goal.",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    const customizedPrompt = prompt.content.replace(/\[([^\]]+)\]/g, userInput.trim());
-    copyToClipboard(customizedPrompt);
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(finalPrompt);
     setIsDialogOpen(false);
-    setUserInput("");
+    toast({
+      title: "Copied to clipboard",
+      description: "The customized prompt has been copied to your clipboard.",
+    });
   };
 
   return (
-    <>
-      <div className="glass-card prompt-card rounded-lg p-6 flex flex-col gap-4">
-        <div className="flex justify-between items-start">
-          <div>
-            <span className="inline-block px-3 py-1 text-xs font-medium bg-secondary text-secondary-foreground rounded-full mb-2">
-              {prompt.category}
-            </span>
-            <h3 className="text-lg font-semibold">{prompt.title}</h3>
-          </div>
-          <button
-            onClick={handleCopyClick}
-            className="p-2 hover:bg-secondary rounded-full transition-colors"
-            aria-label="Copy prompt"
-          >
-            {copied ? (
-              <Check className="w-5 h-5 text-green-500" />
-            ) : (
-              <Copy className="w-5 h-5 text-primary" />
-            )}
-          </button>
-        </div>
-        <p className="text-muted-foreground text-sm line-clamp-3">{prompt.content}</p>
-        {prompt.usageCount !== undefined && (
-          <div className="text-xs text-muted-foreground mt-2">
-            Used {prompt.usageCount} times
-          </div>
-        )}
+    <div className="border rounded-lg p-6 space-y-4">
+      <div className="flex justify-between items-start">
+        <h3 className="text-xl font-semibold">{prompt.title}</h3>
+        <button
+          onClick={() => setIsDialogOpen(true)}
+          className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+        >
+          <Copy className="h-5 w-5 text-gray-600" />
+        </button>
       </div>
+      <p className="text-gray-600">{prompt.content}</p>
 
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Customize your prompt</DialogTitle>
-            <DialogDescription>
-              Enter your topic/goal to customize this prompt
-            </DialogDescription>
+            <DialogTitle>{prompt.title}</DialogTitle>
           </DialogHeader>
           <div className="space-y-4">
-            <Input
-              placeholder="Enter your topic/goal"
-              value={userInput}
-              onChange={(e) => setUserInput(e.target.value)}
-            />
-            <div className="flex justify-end gap-2">
-              <Button variant="outline" onClick={() => setIsDialogOpen(false)}>
-                Cancel
-              </Button>
-              <Button onClick={handleConfirm}>
-                Copy to Clipboard
-              </Button>
+            {prompt.placeholders.map((placeholder) => (
+              <div key={placeholder} className="space-y-2">
+                <label className="text-sm text-gray-600">
+                  {placeholder.charAt(0).toUpperCase() + placeholder.slice(1)}:
+                </label>
+                <input
+                  type="text"
+                  className="w-full p-2 border rounded"
+                  placeholder={`Enter ${placeholder}`}
+                  onChange={(e) => handlePlaceholderChange(placeholder, e.target.value)}
+                />
+              </div>
+            ))}
+            <div className="pt-4">
+              <p className="font-medium mb-2">Final Prompt:</p>
+              <p className="text-gray-600 bg-gray-50 p-3 rounded">{finalPrompt}</p>
             </div>
+            <button
+              onClick={copyToClipboard}
+              className="w-full mt-4 px-4 py-2 bg-primary text-white rounded hover:bg-primary/90 flex items-center justify-center gap-2"
+            >
+              <Copy className="h-4 w-4" /> Copy Prompt
+            </button>
           </div>
         </DialogContent>
       </Dialog>
-    </>
+    </div>
   );
 };
