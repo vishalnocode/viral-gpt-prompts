@@ -3,10 +3,13 @@ import { CategoryFilter, Category } from "@/components/CategoryFilter";
 import { PromptGrid } from "@/components/PromptGrid";
 import { AddPromptForm } from "@/components/AddPromptForm";
 import type { Prompt } from "@/components/PromptCard";
+import { useToast } from "@/components/ui/use-toast";
 
 const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState<Category>("All");
   const [isAdmin] = useState(false); // In a real app, this would come from your auth system
+  const { toast } = useToast();
+  const [categories, setCategories] = useState<Category[]>(["All", "Career", "Gym Plan", "Growth Hack", "Productivity"]);
   const [prompts, setPrompts] = useState<Prompt[]>([
     {
       id: 1,
@@ -38,6 +41,22 @@ const Index = () => {
     ]);
   };
 
+  const handleAddCategory = (newCategory: string) => {
+    if (categories.includes(newCategory)) {
+      toast({
+        title: "Category exists",
+        description: "This category already exists.",
+        variant: "destructive",
+      });
+      return;
+    }
+    setCategories([...categories, newCategory]);
+    toast({
+      title: "Category added",
+      description: "New category has been added successfully.",
+    });
+  };
+
   return (
     <div className="container py-12 min-h-screen">
       <div className="text-center mb-12 animate-fade-in">
@@ -53,6 +72,9 @@ const Index = () => {
       <CategoryFilter
         selectedCategory={selectedCategory}
         onCategoryChange={setSelectedCategory}
+        categories={categories}
+        isAdmin={isAdmin}
+        onAddCategory={handleAddCategory}
       />
       
       <PromptGrid

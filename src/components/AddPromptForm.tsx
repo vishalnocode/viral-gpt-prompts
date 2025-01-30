@@ -4,9 +4,10 @@ import { useToast } from "@/components/ui/use-toast";
 
 interface AddPromptFormProps {
   onSubmit: (prompt: { title: string; content: string; category: Category }) => void;
+  categories?: Category[];
 }
 
-export const AddPromptForm = ({ onSubmit }: AddPromptFormProps) => {
+export const AddPromptForm = ({ onSubmit, categories = ["All", "Career", "Gym Plan", "Growth Hack", "Productivity"] }: AddPromptFormProps) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [category, setCategory] = useState<Category>("All");
@@ -72,10 +73,11 @@ export const AddPromptForm = ({ onSubmit }: AddPromptFormProps) => {
             className="w-full px-4 py-2 rounded-md border border-input bg-background"
           >
             <option value="All" disabled>Select a category</option>
-            <option value="Career">Career</option>
-            <option value="Gym Plan">Gym Plan</option>
-            <option value="Growth Hack">Growth Hack</option>
-            <option value="Productivity">Productivity</option>
+            {categories.filter(cat => cat !== "All").map((cat) => (
+              <option key={cat} value={cat}>
+                {cat}
+              </option>
+            ))}
           </select>
         </div>
         <button
