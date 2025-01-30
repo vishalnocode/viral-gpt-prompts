@@ -6,6 +6,7 @@ import type { Prompt } from "@/components/PromptCard";
 
 const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState<Category>("All");
+  const [isAdmin] = useState(false); // In a real app, this would come from your auth system
   const [prompts, setPrompts] = useState<Prompt[]>([
     {
       id: 1,
@@ -43,11 +44,11 @@ const Index = () => {
         <h1 className="text-4xl font-bold mb-4">Viral ChatGPT Prompts</h1>
         <p className="text-muted-foreground max-w-2xl mx-auto">
           Discover and share powerful ChatGPT prompts that deliver exceptional results.
-          Filter by category or add your own prompts to the collection.
+          Filter by category to find the perfect prompt for your needs.
         </p>
       </div>
 
-      <AddPromptForm onSubmit={handleAddPrompt} />
+      {isAdmin && <AddPromptForm onSubmit={handleAddPrompt} />}
       
       <CategoryFilter
         selectedCategory={selectedCategory}
