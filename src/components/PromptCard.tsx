@@ -17,13 +17,15 @@ export type Prompt = {
   content: string;
   category: Category;
   placeholders: string[];
+  isFeatured: boolean;
 };
 
 interface PromptCardProps {
   prompt: Prompt;
+  onPromptUsed?: (id: number) => void;
 }
 
-export const PromptCard = ({ prompt }: PromptCardProps) => {
+export const PromptCard = ({ prompt, onPromptUsed }: PromptCardProps) => {
   const [placeholderValues, setPlaceholderValues] = useState<Record<string, string>>({});
   const [finalPrompt, setFinalPrompt] = useState(prompt.content);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -43,6 +45,7 @@ export const PromptCard = ({ prompt }: PromptCardProps) => {
   const copyToClipboard = () => {
     navigator.clipboard.writeText(finalPrompt);
     setIsDialogOpen(false);
+    onPromptUsed?.(prompt.id);
     toast({
       title: "Copied to clipboard",
       description: "The customized prompt has been copied to your clipboard.",

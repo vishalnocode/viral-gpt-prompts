@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { CategoryFilter, Category } from "@/components/CategoryFilter";
 import { PromptGrid } from "@/components/PromptGrid";
 import { AddPromptForm } from "@/components/AddPromptForm";
@@ -12,6 +12,18 @@ const Index = () => {
   const { toast } = useToast();
   const [categories, setCategories] = useState<Category[]>(promptData.categories);
   const [prompts, setPrompts] = useState<Prompt[]>(promptData.prompts);
+
+  // Filter prompts based on selected category and featured status
+  const filteredPrompts = useMemo(() => {
+    const categoryPrompts = selectedCategory === "All"
+      ? prompts
+      : prompts.filter(prompt => prompt.category === selectedCategory);
+
+    return {
+      all: categoryPrompts,
+      featured: categoryPrompts.filter(prompt => prompt.isFeatured)
+    };
+  }, [prompts, selectedCategory]);
 
   const handleAddPrompt = (newPrompt: { title: string; content: string; category: Category }) => {
     setPrompts([
@@ -64,11 +76,24 @@ const Index = () => {
         isAdmin={isAdmin}
         onAddCategory={handleAddCategory}
       />
-      
-      <PromptGrid
-        prompts={prompts}
-        category={selectedCategory}
-      />
+
+      {/* Featured Prompts Section */}
+      {filteredPrompts.featured.length > 0 && (
+        <div className="mb-12">
+          <h2 className="text-2xl font-semibold mb-6">
+            Featured {selectedCategory !== "All" ? selectedCategory : ""} Prompts
+          </h2>
+          <PromptGrid prompts={filteredPrompts.featured} />
+        </div>
+      )}
+
+      {/* All Prompts Section */}
+      <div>
+        <h2 className="text-2xl font-semibold mb-6">
+          {selectedCategory === "All" ? "All Prompts" : `All ${selectedCategory} Prompts`}
+        </h2>
+        <PromptGrid prompts={filteredPrompts.all} />
+      </div>
     </div>
   );
 };

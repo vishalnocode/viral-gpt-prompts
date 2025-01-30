@@ -7,51 +7,21 @@ interface PromptGridProps {
   onPromptUsed: (promptId: number) => void;
 }
 
-export const PromptGrid = ({ prompts, category, onPromptUsed }: PromptGridProps) => {
-  // Filter prompts based on category
-  const filteredPrompts = category === "All" 
-    ? prompts 
-    : prompts.filter(prompt => prompt.category === category);
+interface PromptGridProps {
+  prompts: Prompt[];
+  onPromptUsed?: (id: number) => void;
+}
 
-  // Sort prompts by usage count
-  const sortedPrompts = [...filteredPrompts].sort((a, b) => 
-    (b.usageCount || 0) - (a.usageCount || 0)
-  );
-
-  // Get the most used prompts (top 3) - only show for specific categories
-  const mostUsedPrompts = category !== "All" ? sortedPrompts.slice(0, 3) : [];
-  // Get the remaining prompts
-  const remainingPrompts = category !== "All" ? sortedPrompts.slice(3) : sortedPrompts;
-
+export const PromptGrid = ({ prompts, onPromptUsed }: PromptGridProps) => {
   return (
-    <div className="space-y-8 animate-fade-in">
-      {mostUsedPrompts.length > 0 && (
-        <div>
-          <h2 className="text-xl font-semibold mb-4">Most Used {category} Prompts</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {mostUsedPrompts.map((prompt) => (
-              <PromptCard 
-                key={prompt.id} 
-                prompt={prompt} 
-                onPromptUsed={onPromptUsed}
-              />
-            ))}
-          </div>
-        </div>
-      )}
-
-      <div>
-        {category !== "All" && <h2 className="text-xl font-semibold mb-4">All {category} Prompts</h2>}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {remainingPrompts.map((prompt) => (
-            <PromptCard 
-              key={prompt.id} 
-              prompt={prompt} 
-              onPromptUsed={onPromptUsed}
-            />
-          ))}
-        </div>
-      </div>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {prompts.map((prompt) => (
+        <PromptCard 
+          key={prompt.id} 
+          prompt={prompt} 
+          onPromptUsed={onPromptUsed}
+        />
+      ))}
     </div>
   );
 };

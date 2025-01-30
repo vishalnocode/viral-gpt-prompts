@@ -6,14 +6,16 @@
       "title": "Professional Email Writer",
       "content": "Write a professional email about [topic] that is concise, clear, and maintains a friendly yet formal tone.",
       "category": "Career",
-      "placeholders": ["topic"]
+      "placeholders": ["topic"],
+      "isFeatured": true
     },
     {
       "id": 2,
       "title": "Personalized Workout Plan",
       "content": "Create a detailed 4-week workout plan for [goal] with progressive overload, considering my fitness level [level] and available equipment [equipment].",
       "category": "Gym Plan",
-      "placeholders": ["goal", "level", "equipment"]
+      "placeholders": ["goal", "level", "equipment"],
+      "isFeatured": true
     },
     {
       "id": 3,
@@ -21,6 +23,13 @@
       "content": "Analyze [content piece] and provide specific strategies to increase its viral potential across social media platforms.",
       "category": "Growth Hack",
       "placeholders": ["content piece"]
+    },
+    {
+        "id": 4,
+        "title": "Write content for me!",
+        "content": "Write a professional email about [topic] that is concise, clear, and maintains a friendly yet formal tone.",
+        "category": "Career",
+        "placeholders": ["topic"]
     }
   ]
 } 
