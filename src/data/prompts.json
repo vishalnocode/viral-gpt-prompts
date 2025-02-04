@@ -35,8 +35,7 @@
       "prompt": "Create a React component for [FEATURE] using TypeScript and modern best practices.",
       "category": "Programming",
       "subcategory": "Web Development",
-      "isFeatured": true,
-      "placeholders": ["FEATURE"]
+      "isFeatured": true
     },
     {
       "id": "3",
