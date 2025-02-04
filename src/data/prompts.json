@@ -1,35 +1,62 @@
 {
-  "categories": ["All", "Career", "Gym Plan", "Growth Hack", "Productivity"],
+  "categories": [
+    {
+      "name": "Writing",
+      "subcategories": ["Blog Posts", "Essays", "Creative Writing", "Technical Writing"]
+    },
+    {
+      "name": "Programming",
+      "subcategories": ["Web Development", "Mobile Development", "Data Science", "DevOps"]
+    },
+    {
+      "name": "Business",
+      "subcategories": ["Marketing", "Sales", "Strategy", "Finance"]
+    },
+    {
+      "name": "Design",
+      "subcategories": ["UI/UX", "Graphic Design", "Logo Design", "Illustration"]
+    }
+  ],
   "prompts": [
     {
-      "id": 1,
-      "title": "Professional Email Writer",
-      "content": "Write a professional email about [topic] that is concise, clear, and maintains a friendly yet formal tone.",
-      "category": "Career",
-      "placeholders": ["topic"],
-      "isFeatured": true
+      "id": "1",
+      "title": "Blog Post Outline",
+      "description": "Create a detailed blog post outline with sections and subsections",
+      "prompt": "Create a detailed blog post outline for [TOPIC]. [SUB] Include main sections, subsections, and key points to cover.",
+      "category": "Writing",
+      "subcategory": "Blog Posts",
+      "isFeatured": true,
+      "placeholders": ["TOPIC", "SUB"]
     },
     {
-      "id": 2,
-      "title": "Personalized Workout Plan",
-      "content": "Create a detailed 4-week workout plan for [goal] with progressive overload, considering my fitness level [level] and available equipment [equipment].",
-      "category": "Gym Plan",
-      "placeholders": ["goal", "level", "equipment"],
-      "isFeatured": true
+      "id": "2",
+      "title": "React Component",
+      "description": "Generate a React component with TypeScript",
+      "prompt": "Create a React component for [FEATURE] using TypeScript and modern best practices.",
+      "category": "Programming",
+      "subcategory": "Web Development",
+      "isFeatured": true,
+      "placeholders": ["FEATURE"]
     },
     {
-      "id": 3,
-      "title": "Content Virality Strategy",
-      "content": "Analyze [content piece] and provide specific strategies to increase its viral potential across social media platforms.",
-      "category": "Growth Hack",
-      "placeholders": ["content piece"]
+      "id": "3",
+      "title": "Marketing Plan",
+      "description": "Create a comprehensive marketing plan template",
+      "prompt": "Generate a detailed marketing plan template for [PRODUCT/SERVICE] including target audience, channels, and KPIs.",
+      "category": "Business",
+      "subcategory": "Marketing",
+      "isFeatured": false,
+      "placeholders": ["PRODUCT/SERVICE"]
     },
     {
-        "id": 4,
-        "title": "Write content for me!",
-        "content": "Write a professional email about [topic] that is concise, clear, and maintains a friendly yet formal tone.",
-        "category": "Career",
-        "placeholders": ["topic"]
+      "id": "4",
+      "title": "UI Design System",
+      "description": "Define a consistent UI design system",
+      "prompt": "Create a UI design system specification for [PROJECT] including colors, typography, spacing, and component guidelines.",
+      "category": "Design",
+      "subcategory": "UI/UX",
+      "isFeatured": true,
+      "placeholders": ["PROJECT"]
     }
   ]
 } 

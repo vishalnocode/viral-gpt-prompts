@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import promptData from "@/data/prompts.json";
 
 export type Category = "Career" | "Gym Plan" | "Growth Hack" | "Productivity" | "All" | string;
 
 interface CategoryFilterProps {
-  onCategoryChange: (category: Category) => void;
-  selectedCategory: Category;
+  onCategoryChange: (category: string) => void;
+  selectedCategory: string;
   categories: Category[];
   isAdmin?: boolean;
   onAddCategory?: (category: string) => void;
@@ -32,19 +34,21 @@ export const CategoryFilter = ({
   return (
     <div className="mb-8 animate-fade-in">
       <div className="flex flex-wrap gap-2 justify-center">
-        {categories.map((category) => (
-          <button
-            key={category}
-            onClick={() => onCategoryChange(category)}
-            className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300
-              ${
-                selectedCategory === category
-                  ? "bg-primary text-primary-foreground shadow-md scale-105"
-                  : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
-              }`}
+        <Button
+          variant={selectedCategory === "All" ? "default" : "outline"}
+          onClick={() => onCategoryChange("All")}
+          key="all"
+        >
+          All
+        </Button>
+        {promptData.categories.map((category) => (
+          <Button
+            key={category.name}
+            variant={selectedCategory === category.name ? "default" : "outline"}
+            onClick={() => onCategoryChange(category.name)}
           >
-            {category}
-          </button>
+            {category.name}
+          </Button>
         ))}
         {isAdmin && !showAddForm && (
           <button

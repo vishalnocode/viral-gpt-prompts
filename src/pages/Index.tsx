@@ -1,29 +1,68 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { CategoryFilter, Category } from "@/components/CategoryFilter";
 import { PromptGrid } from "@/components/PromptGrid";
 import { AddPromptForm } from "@/components/AddPromptForm";
 import type { Prompt } from "@/components/PromptCard";
 import { useToast } from "@/components/ui/use-toast";
 import promptData from "@/data/prompts.json";
+import { Button } from "@/components/ui/button";
+import useEmblaCarousel from 'embla-carousel-react';
+import { PromptCard } from "@/components/PromptCard";
+
+// Update type definitions
+type Category = string;
+type Subcategory = string;
+type CategoryData = {
+  name: Category;
+  subcategories: Subcategory[];
+};
 
 const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState<Category>("All");
+  const [selectedSubcategory, setSelectedSubcategory] = useState<Subcategory>("All");
   const [isAdmin] = useState(false);
   const { toast } = useToast();
-  const [categories, setCategories] = useState<Category[]>(promptData.categories);
-  const [prompts, setPrompts] = useState<Prompt[]>(promptData.prompts);
+  const [categories] = useState<CategoryData[]>(promptData.categories);
+  const [prompts] = useState(promptData.prompts);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [emblaRef, emblaApi] = useEmblaCarousel({ 
+    align: 'start',
+    loop: true,
+    skipSnaps: false,
+  });
 
-  // Filter prompts based on selected category and featured status
+  useEffect(() => {
+    if (!emblaApi) return;
+
+    emblaApi.on('select', () => {
+      setSelectedIndex(emblaApi.selectedScrollSnap());
+    });
+  }, [emblaApi]);
+
+  // Get subcategories for current category
+  const availableSubcategories = useMemo(() => {
+    if (selectedCategory === "All") {
+      return ["All"];
+    }
+    const category = categories.find(cat => cat.name === selectedCategory);
+    return category ? ["All", ...category.subcategories] : ["All"];
+  }, [selectedCategory, categories]);
+
+  // Update filtering logic
   const filteredPrompts = useMemo(() => {
-    const categoryPrompts = selectedCategory === "All"
+    let filtered = selectedCategory === "All"
       ? prompts
       : prompts.filter(prompt => prompt.category === selectedCategory);
 
+    if (selectedSubcategory !== "All") {
+      filtered = filtered.filter(prompt => prompt.subcategory === selectedSubcategory);
+    }
+
     return {
-      all: categoryPrompts,
-      featured: categoryPrompts.filter(prompt => prompt.isFeatured)
+      all: filtered,
+      featured: filtered.filter(prompt => prompt.isFeatured)
     };
-  }, [prompts, selectedCategory]);
+  }, [prompts, selectedCategory, selectedSubcategory]);
 
   const handleAddPrompt = (newPrompt: { title: string; content: string; category: Category }) => {
     setPrompts([
@@ -41,22 +80,6 @@ const Index = () => {
     return matches.map(match => match.slice(1, -1));
   };
 
-  const handleAddCategory = (newCategory: string) => {
-    if (categories.includes(newCategory)) {
-      toast({
-        title: "Category exists",
-        description: "This category already exists.",
-        variant: "destructive",
-      });
-      return;
-    }
-    setCategories([...categories, newCategory]);
-    toast({
-      title: "Category added",
-      description: "New category has been added successfully.",
-    });
-  };
-
   return (
     <div className="container py-12 min-h-screen">
       <div className="text-center mb-12 animate-fade-in">
@@ -71,27 +94,99 @@ const Index = () => {
       
       <CategoryFilter
         selectedCategory={selectedCategory}
-        onCategoryChange={setSelectedCategory}
+        onCategoryChange={(category) => {
+          setSelectedCategory(category);
+          setSelectedSubcategory("All"); // Reset subcategory when category changes
+        }}
         categories={categories}
-        isAdmin={isAdmin}
-        onAddCategory={handleAddCategory}
       />
 
       {/* Featured Prompts Section */}
       {filteredPrompts.featured.length > 0 && (
         <div className="mb-12">
           <h2 className="text-2xl font-semibold mb-6">
-            Featured {selectedCategory !== "All" ? selectedCategory : ""} Prompts
+            Featured {selectedCategory !== "All" ? `${selectedCategory} ` : ""}Prompts
           </h2>
-          <PromptGrid prompts={filteredPrompts.featured} />
+
+          {/* Desktop/Tablet Grid */}
+          <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredPrompts.featured.map((prompt) => (
+              <PromptCard 
+                key={prompt.id} 
+                prompt={prompt}
+                onPromptUsed={(id) => {
+                  // Handle prompt usage if needed
+                }}
+              />
+            ))}
+          </div>
+          
+          
+          {/* Mobile Carousel */}
+          <div className="sm:hidden">
+            <div className="relative">
+              <div className="overflow-hidden" ref={emblaRef}>
+                <div className="flex">
+                  {filteredPrompts.featured.map((prompt) => (
+                    <div key={prompt.id} className="flex-[0_0_100%] min-w-0 pl-4">
+                      <PromptGrid prompts={[prompt]} />
+                    </div>
+                  ))}
+                </div>
+              </div>
+              
+              {/* Dots Navigation */}
+              <div className="flex justify-center gap-2 mt-4">
+                {filteredPrompts.featured.map((_, index) => (
+                  <button
+                    key={index}
+                    className={`h-2 rounded-full transition-all ${
+                      index === selectedIndex 
+                        ? 'w-4 bg-primary' 
+                        : 'w-2 bg-primary/30'
+                    }`}
+                    onClick={() => emblaApi?.scrollTo(index)}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       )}
 
       {/* All Prompts Section */}
       <div>
-        <h2 className="text-2xl font-semibold mb-6">
-          {selectedCategory === "All" ? "All Prompts" : `All ${selectedCategory} Prompts`}
-        </h2>
+        <div className="mb-6">
+          <h2 className="text-2xl font-semibold">
+            All {selectedCategory !== "All" ? `${selectedCategory} ` : ""}Prompts
+          </h2>
+
+          {/* Subcategory Filter - Only show when a category is selected */}
+          {selectedCategory !== "All" && (
+            <div className="mt-4">
+              <div className="flex flex-wrap gap-2 justify-center">
+                <Button
+                  variant={selectedSubcategory === "All" ? "default" : "outline"}
+                  onClick={() => setSelectedSubcategory("All")}
+                >
+                  All {selectedCategory}
+                </Button>
+                {availableSubcategories
+                  .filter(sub => sub !== "All")
+                  .map((subcategory) => (
+                    <Button
+                      key={subcategory}
+                      variant={selectedSubcategory === subcategory ? "default" : "outline"}
+                      onClick={() => setSelectedSubcategory(subcategory)}
+                    >
+                      {subcategory}
+                    </Button>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+
         <PromptGrid prompts={filteredPrompts.all} />
       </div>
     </div>

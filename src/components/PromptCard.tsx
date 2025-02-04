@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Copy } from "lucide-react";
+import { Copy, Play } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import {
   Dialog,
@@ -21,13 +21,22 @@ export type Prompt = {
 };
 
 interface PromptCardProps {
-  prompt: Prompt;
-  onPromptUsed?: (id: number) => void;
+  prompt: {
+    id: string;
+    title: string;
+    description: string;
+    prompt: string;
+    category: string;
+    subcategory: string;
+    isFeatured: boolean;
+    placeholders?: string[];
+  };
+  onPromptUsed?: (id: string) => void;
 }
 
 export const PromptCard = ({ prompt, onPromptUsed }: PromptCardProps) => {
   const [placeholderValues, setPlaceholderValues] = useState<Record<string, string>>({});
-  const [finalPrompt, setFinalPrompt] = useState(prompt.content);
+  const [finalPrompt, setFinalPrompt] = useState(prompt.prompt);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [selectedAI, setSelectedAI] = useState('chatgpt');
   const { toast } = useToast();
@@ -42,7 +51,7 @@ export const PromptCard = ({ prompt, onPromptUsed }: PromptCardProps) => {
     const newValues = { ...placeholderValues, [placeholder]: value };
     setPlaceholderValues(newValues);
     
-    let updatedPrompt = prompt.content;
+    let updatedPrompt = prompt.prompt;
     Object.entries(newValues).forEach(([key, value]) => {
       updatedPrompt = updatedPrompt.replace(`[${key}]`, value);
     });
@@ -80,6 +89,13 @@ export const PromptCard = ({ prompt, onPromptUsed }: PromptCardProps) => {
     onPromptUsed?.(prompt.id);
   };
 
+  const areAllPlaceholdersFilled = () => {
+    if (!prompt.placeholders || prompt.placeholders.length === 0) return true;
+    return prompt.placeholders.every(placeholder => 
+      placeholderValues[placeholder] && placeholderValues[placeholder].trim() !== ''
+    );
+  };
+
   return (
     <div className="border rounded-lg p-6 space-y-4">
       <div className="flex justify-between items-start">
@@ -91,15 +107,15 @@ export const PromptCard = ({ prompt, onPromptUsed }: PromptCardProps) => {
           <Copy className="h-5 w-5 text-gray-600" />
         </button>
       </div>
-      <p className="text-gray-600">{prompt.content}</p>
+      <p className="text-gray-600">{prompt.prompt}</p>
 
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent>
+        <DialogContent className="rounded-xl sm:rounded-2xl">
           <DialogHeader>
             <DialogTitle>{prompt.title}</DialogTitle>
           </DialogHeader>
           <div className="space-y-4">
-            {prompt.placeholders.map((placeholder) => (
+            {(prompt.placeholders || []).map((placeholder) => (
               <div key={placeholder} className="space-y-2">
                 <label className="text-sm text-gray-600">
                   {placeholder.charAt(0).toUpperCase() + placeholder.slice(1)}:
@@ -122,6 +138,7 @@ export const PromptCard = ({ prompt, onPromptUsed }: PromptCardProps) => {
                   value={selectedAI}
                   onChange={(e) => setSelectedAI(e.target.value)}
                   className="px-3 py-2 border rounded-md bg-white"
+                  disabled={!areAllPlaceholdersFilled()}
                 >
                   <option value="chatgpt">ChatGPT</option>
                   <option value="claude">Claude</option>
@@ -129,14 +146,16 @@ export const PromptCard = ({ prompt, onPromptUsed }: PromptCardProps) => {
                 </select>
                 <button
                   onClick={openInAITool}
-                  className="flex-1 px-4 py-2 bg-primary text-white rounded hover:bg-primary/90 flex items-center justify-center gap-2"
+                  disabled={!areAllPlaceholdersFilled()}
+                  className="flex-1 px-4 py-2 bg-primary text-white rounded hover:bg-primary/90 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Open in {selectedAI}
+                  <Play className="h-4 w-4" /> Run the prompt
                 </button>
               </div>
               <button
                 onClick={copyToClipboard}
-                className="w-full px-4 py-2 bg-primary text-white rounded hover:bg-primary/90 flex items-center justify-center gap-2"
+                disabled={!areAllPlaceholdersFilled()}
+                className="w-full px-4 py-2 bg-primary text-white rounded hover:bg-primary/90 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <Copy className="h-4 w-4" /> Copy Prompt
               </button>
