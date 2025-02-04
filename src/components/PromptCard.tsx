@@ -130,16 +130,30 @@ export const PromptCard = ({ prompt, onPromptUsed }: PromptCardProps) => {
       <p className="text-gray-600">{prompt.prompt}</p>
 
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent className="rounded-xl sm:rounded-2xl max-h-[80vh] overflow-y-auto">
+        <DialogContent className="rounded-xl sm:rounded-2xl h-[100dvh] sm:h-auto sm:max-h-[80vh]">
           <DialogHeader>
             <DialogTitle>{prompt.title}</DialogTitle>
           </DialogHeader>
-          <div className="space-y-4">
+          <div className="space-y-4 overflow-y-auto max-h-[calc(100dvh-8rem)] sm:max-h-[60vh] pr-2">
             <div className="space-y-2">
               <p className="font-medium">Final Prompt:</p>
               <p className="text-gray-600 bg-gray-50 p-3 rounded">{finalPrompt}</p>
             </div>
             
+            {(prompt.placeholders || []).map((placeholder) => (
+              <div key={placeholder} className="space-y-2">
+                <label className="text-sm text-gray-600">
+                  {placeholder.charAt(0).toUpperCase() + placeholder.slice(1)}:
+                </label>
+                <input
+                  type="text"
+                  className="w-full p-2 border rounded"
+                  placeholder={`Enter ${placeholder}`}
+                  onChange={(e) => handlePlaceholderChange(placeholder, e.target.value)}
+                />
+              </div>
+            ))}
+
             <div className="space-y-2">
               <div className="flex items-center gap-2">
                 <select 
@@ -160,20 +174,6 @@ export const PromptCard = ({ prompt, onPromptUsed }: PromptCardProps) => {
                 </button>
               </div>
             </div>
-
-            {(prompt.placeholders || []).map((placeholder) => (
-              <div key={placeholder} className="space-y-2">
-                <label className="text-sm text-gray-600">
-                  {placeholder.charAt(0).toUpperCase() + placeholder.slice(1)}:
-                </label>
-                <input
-                  type="text"
-                  className="w-full p-2 border rounded"
-                  placeholder={`Enter ${placeholder}`}
-                  onChange={(e) => handlePlaceholderChange(placeholder, e.target.value)}
-                />
-              </div>
-            ))}
             
             <button
               onClick={copyToClipboard}
