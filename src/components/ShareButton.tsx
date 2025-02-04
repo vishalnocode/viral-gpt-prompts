@@ -9,31 +9,50 @@ import {
 
 export const ShareButton = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const shareUrl = window.location.href;
-  const title = "Check out these amazing ChatGPT prompts!";
+  const shareUrl = "https://storied-tulumba-972953.netlify.app/";
+  const title = "Free collection of Viral ChatGPT prompts.";
+  const shareImage = "./src/assets";
+  const description = "Discover the best ChatGPT prompts for resume writing, business, marketing, and more.";
 
   return (
     <div className="fixed bottom-6 right-6 z-50">
       <div className={`flex flex-col-reverse gap-2 mb-2 transition-all duration-300 ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-        <TwitterShareButton url={shareUrl} title={title}>
+        <TwitterShareButton 
+          url={shareUrl} 
+          title={title}
+          via="YourTwitterHandle"
+          hashtags={["ChatGPT Prompts", "AI Prompts"]}
+        >
           <div className="p-3 bg-primary text-white rounded-full hover:bg-primary/90">
             <Twitter size={20} />
           </div>
         </TwitterShareButton>
         
-        <LinkedinShareButton url={shareUrl} title={title}>
+        <LinkedinShareButton 
+          url={shareUrl} 
+          title={title}
+          summary={description}
+          source={window.location.hostname}
+        >
           <div className="p-3 bg-primary text-white rounded-full hover:bg-primary/90">
             <Linkedin size={20} />
           </div>
         </LinkedinShareButton>
         
-        <FacebookShareButton url={shareUrl} quote={title}>
+        <FacebookShareButton 
+          url={shareUrl} 
+          quote={title}
+          hashtag="#ChatGPT"
+        >
           <div className="p-3 bg-primary text-white rounded-full hover:bg-primary/90">
             <Facebook size={20} />
           </div>
         </FacebookShareButton>
         
-        <RedditShareButton url={shareUrl} title={title}>
+        <RedditShareButton 
+          url={shareUrl} 
+          title={title}
+        >
           <div className="p-3 bg-primary text-white rounded-full hover:bg-primary/90">
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
               <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0z"/>
