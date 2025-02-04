@@ -8,6 +8,7 @@ import promptData from "@/data/prompts.json";
 import { Button } from "@/components/ui/button";
 import useEmblaCarousel from 'embla-carousel-react';
 import { PromptCard } from "@/components/PromptCard";
+import { PlusCircle } from "lucide-react";
 
 // Update type definitions
 type Category = string;
@@ -16,7 +17,6 @@ type CategoryData = {
   name: Category;
   subcategories: Subcategory[];
 };
-
 const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState<Category>("All");
   const [selectedSubcategory, setSelectedSubcategory] = useState<Subcategory>("All");
@@ -96,7 +96,7 @@ const Index = () => {
         selectedCategory={selectedCategory}
         onCategoryChange={(category) => {
           setSelectedCategory(category);
-          setSelectedSubcategory("All"); // Reset subcategory when category changes
+          setSelectedSubcategory("All");
         }}
         categories={categories}
       />
@@ -153,6 +153,28 @@ const Index = () => {
           </div>
         </div>
       )}
+
+      {/* Contribution Card - Moved here */}
+      <div className="mb-12">
+        <div className="bg-card rounded-lg p-6 shadow-lg border">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="rounded-full bg-primary/10 p-2">
+              <PlusCircle className="w-6 h-6 text-primary" />
+            </div>
+            <h3 className="text-xl font-semibold">Add Your Prompt</h3>
+          </div>
+          <p className="text-muted-foreground mb-4">
+            Share your creative prompts with the community! Submit a pull request to add your prompts to the collection.
+          </p>
+          <Button 
+            className="w-full"
+            variant="outline"
+            onClick={() => window.open('https://github.com/yourusername/yourrepo', '_blank')}
+          >
+            Contribute Now
+          </Button>
+        </div>
+      </div>
 
       {/* All Prompts Section */}
       <div>
