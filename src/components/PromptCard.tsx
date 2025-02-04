@@ -29,7 +29,14 @@ export const PromptCard = ({ prompt, onPromptUsed }: PromptCardProps) => {
   const [placeholderValues, setPlaceholderValues] = useState<Record<string, string>>({});
   const [finalPrompt, setFinalPrompt] = useState(prompt.content);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [selectedAI, setSelectedAI] = useState('chatgpt');
   const { toast } = useToast();
+
+  const aiTools = {
+    chatgpt: 'https://chat.openai.com',
+    claude: 'https://claude.ai',
+    perplexity: 'https://perplexity.ai/search'
+  };
 
   const handlePlaceholderChange = (placeholder: string, value: string) => {
     const newValues = { ...placeholderValues, [placeholder]: value };
@@ -50,6 +57,27 @@ export const PromptCard = ({ prompt, onPromptUsed }: PromptCardProps) => {
       title: "Copied to clipboard",
       description: "The customized prompt has been copied to your clipboard.",
     });
+  };
+
+  const openInAITool = () => {
+    const baseUrl = aiTools[selectedAI]
+    let url = '';
+    switch (selectedAI) {
+      case 'chatgpt':
+        url = `${baseUrl}?prompt=${encodeURIComponent(finalPrompt)}`;
+        break;
+      case 'claude':
+        url = `${baseUrl}?q=${encodeURIComponent(finalPrompt)}`;
+        break;
+      case 'perplexity':
+        url = `${baseUrl}?q=${encodeURIComponent(finalPrompt)}`;
+        break;
+      default:
+        url = `${baseUrl}?q=${encodeURIComponent(finalPrompt)}`;
+    }
+    window.open(url, '_blank');
+    setIsDialogOpen(false);
+    onPromptUsed?.(prompt.id);
   };
 
   return (
@@ -88,12 +116,31 @@ export const PromptCard = ({ prompt, onPromptUsed }: PromptCardProps) => {
               <p className="font-medium mb-2">Final Prompt:</p>
               <p className="text-gray-600 bg-gray-50 p-3 rounded">{finalPrompt}</p>
             </div>
-            <button
-              onClick={copyToClipboard}
-              className="w-full mt-4 px-4 py-2 bg-primary text-white rounded hover:bg-primary/90 flex items-center justify-center gap-2"
-            >
-              <Copy className="h-4 w-4" /> Copy Prompt
-            </button>
+            <div className="space-y-2">
+              <div className="flex items-center gap-2">
+                <select 
+                  value={selectedAI}
+                  onChange={(e) => setSelectedAI(e.target.value)}
+                  className="px-3 py-2 border rounded-md bg-white"
+                >
+                  <option value="chatgpt">ChatGPT</option>
+                  <option value="claude">Claude</option>
+                  <option value="perplexity">Perplexity</option>
+                </select>
+                <button
+                  onClick={openInAITool}
+                  className="flex-1 px-4 py-2 bg-primary text-white rounded hover:bg-primary/90 flex items-center justify-center gap-2"
+                >
+                  Open in {selectedAI}
+                </button>
+              </div>
+              <button
+                onClick={copyToClipboard}
+                className="w-full px-4 py-2 bg-primary text-white rounded hover:bg-primary/90 flex items-center justify-center gap-2"
+              >
+                <Copy className="h-4 w-4" /> Copy Prompt
+              </button>
+            </div>
           </div>
         </DialogContent>
       </Dialog>
