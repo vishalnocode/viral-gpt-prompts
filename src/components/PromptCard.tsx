@@ -55,7 +55,9 @@ export const PromptCard = ({ prompt, onPromptUsed }: PromptCardProps) => {
     
     let updatedPrompt = prompt.prompt;
     Object.entries(newValues).forEach(([key, value]) => {
-      updatedPrompt = updatedPrompt.replace(`[${key}]`, value);
+      if (value.trim()) {
+        updatedPrompt = updatedPrompt.replace(`[${key}]`, value);
+      }
     });
     setFinalPrompt(updatedPrompt);
   };
@@ -128,7 +130,7 @@ export const PromptCard = ({ prompt, onPromptUsed }: PromptCardProps) => {
       <p className="text-gray-600">{prompt.prompt}</p>
 
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent className="rounded-xl sm:rounded-2xl">
+        <DialogContent className="rounded-xl sm:rounded-2xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>{prompt.title}</DialogTitle>
           </DialogHeader>
