@@ -55,7 +55,7 @@ const Index = () => {
       : prompts.filter(prompt => prompt.category === selectedCategory);
 
     // Featured prompts should only be filtered by category, not subcategory
-    const featured = filtered.filter(prompt => prompt.isFeatured);
+    const featured = filtered.filter(prompt => prompt.isFeatured).slice(0, 3);  // Limit to 3 featured prompts
 
     // Apply subcategory filter only to the main list
     if (selectedSubcategory !== "All") {
@@ -64,7 +64,7 @@ const Index = () => {
 
     return {
       all: filtered,
-      featured: featured  // Featured prompts are now independent of subcategory filter
+      featured: featured
     };
   }, [prompts, selectedCategory, selectedSubcategory]);
 
