@@ -36,6 +36,34 @@ const Index = () => {
   const [selectedPrompt, setSelectedPrompt] = useState<Prompt | null>(null);
   const [isSearchResultsVisible, setIsSearchResultsVisible] = useState(false);
 
+  // New function for search results (moved up)
+  const searchResults = useMemo(() => {
+    if (!searchQuery) return [];
+    
+    return prompts
+      .filter(prompt => 
+        (prompt.title?.toLowerCase().includes(searchQuery.toLowerCase()) || false) ||
+        (prompt.content?.toLowerCase().includes(searchQuery.toLowerCase()) || false)
+      )
+      .slice(0, 3); // Limit to 3 results
+  }, [prompts, searchQuery]);
+
+  // Updated click outside handler
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const searchContainer = document.querySelector('.search-container');
+      if (searchContainer && !searchContainer.contains(event.target as Node)) {
+        // Only hide if there are no search results
+        if (searchResults.length === 0) {
+          setIsSearchResultsVisible(false);
+        }
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [searchResults.length]);
+
   useEffect(() => {
     if (!emblaApi) return;
 
@@ -43,19 +71,6 @@ const Index = () => {
       setSelectedIndex(emblaApi.selectedScrollSnap());
     });
   }, [emblaApi]);
-
-  // Add click outside handler
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const searchContainer = document.querySelector('.search-container');
-      if (searchContainer && !searchContainer.contains(event.target as Node)) {
-        setIsSearchResultsVisible(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
 
   // Get subcategories for current category
   const availableSubcategories = useMemo(() => {
@@ -86,18 +101,6 @@ const Index = () => {
       featured: featured
     };
   }, [prompts, selectedCategory, selectedSubcategory]);
-
-  // New function for search results
-  const searchResults = useMemo(() => {
-    if (!searchQuery) return [];
-    
-    return prompts
-      .filter(prompt => 
-        (prompt.title?.toLowerCase().includes(searchQuery.toLowerCase()) || false) ||
-        (prompt.content?.toLowerCase().includes(searchQuery.toLowerCase()) || false)
-      )
-      .slice(0, 3); // Limit to 3 results
-  }, [prompts, searchQuery]);
 
   const handleAddPrompt = (newPrompt: { title: string; content: string; category: Category }) => {
     setPrompts([
@@ -158,7 +161,7 @@ const Index = () => {
                     ))
                   ) : (
                     <div className="text-center py-2">
-                      <p className="text-white text-sm">No matches found. Try different search terms.</p>
+                      <p className="text-white text-sm">No matches found. Use the below category filters to find a relevant prompt.</p>
                     </div>
                   )}
                 </div>
