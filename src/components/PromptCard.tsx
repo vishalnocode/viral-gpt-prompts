@@ -107,7 +107,7 @@ export const PromptCard = ({ prompt, onPromptUsed }: PromptCardProps) => {
   };
 
   return (
-    <div className="border rounded-lg p-6 space-y-4">
+    <div className="border rounded-lg p-6 space-y-4 bg-black text-white">
       <div className="flex justify-between items-start">
         <h3 className="text-xl font-semibold">{prompt.title}</h3>
         <div className="flex gap-2">
@@ -127,7 +127,7 @@ export const PromptCard = ({ prompt, onPromptUsed }: PromptCardProps) => {
           )}
         </div>
       </div>
-      <p className="text-gray-600">{prompt.prompt}</p>
+      <p className="text-gray-400">{prompt.prompt}</p>
 
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogContent className="rounded-xl sm:rounded-2xl h-[100dvh] sm:h-auto sm:max-h-[80vh]">
@@ -137,7 +137,7 @@ export const PromptCard = ({ prompt, onPromptUsed }: PromptCardProps) => {
           <div className="space-y-4 overflow-y-auto max-h-[calc(100dvh-8rem)] sm:max-h-[60vh] pr-2">
             <div className="space-y-2">
               <p className="font-medium">Final Prompt:</p>
-              <p className="text-gray-600 bg-gray-50 p-3 rounded">{finalPrompt}</p>
+              <p className="text-gray-400 bg-gray-800 p-3 rounded">{finalPrompt}</p>
             </div>
             
             {(prompt.placeholders || []).map((placeholder) => (
