@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Copy, Play } from "lucide-react";
+import { Clipboard, Play } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import {
   Dialog,
@@ -115,7 +115,7 @@ export const PromptCard = ({ prompt, onPromptUsed }: PromptCardProps) => {
             onClick={() => setIsDialogOpen(true)}
             className="p-2 hover:bg-gray-100 rounded-full transition-colors"
           >
-            <Copy className="h-5 w-5 text-gray-600" />
+            <Clipboard className="h-5 w-5 text-gray-600" />
           </button>
           {!hasPlaceholders && (
             <button
@@ -180,7 +180,7 @@ export const PromptCard = ({ prompt, onPromptUsed }: PromptCardProps) => {
               disabled={!areAllPlaceholdersFilled()}
               className="w-full px-4 py-2 bg-primary text-white rounded hover:bg-primary/90 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              <Copy className="h-4 w-4" /> Copy Prompt
+              <Clipboard className="h-4 w-4" /> Copy Prompt
             </button>
           </div>
         </DialogContent>

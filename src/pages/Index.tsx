@@ -134,7 +134,7 @@ const Index = () => {
                     </button>
                   ) : (
                     <div className="text-center py-2">
-                      <p className="text-white text-sm">No matches found. Try using the filters above to find the best prompt for your needs.</p>
+                      <p className="text-white text-sm">No matches found. Try using the filters below to find the best prompt for your requirements.</p>
                     </div>
                   )}
                 </div>
