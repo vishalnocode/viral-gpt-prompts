@@ -255,8 +255,8 @@
     {
       "id": "16",
       "title": "4-Week Workout Routine",
-      "description": "Create a 4-week workout routine for [BEGINNER/INTERMEDIATE/ADVANCED] individuals focused on [GOAL] (e.g., weight loss, muscle gain, endurance).",
-      "prompt": "Create a 4-week workout routine for [BEGINNER/INTERMEDIATE/ADVANCED] individuals focused on [GOAL] (e.g., weight loss, muscle gain, endurance).",
+      "description": "Create a 4-week workout routine for [BEGINNER / INTERMEDIATE / ADVANCED] individuals focused on [GOAL] (e.g., weight loss, muscle gain, endurance).",
+      "prompt": "Create a 4-week workout routine for [BEGINNER / INTERMEDIATE / ADVANCED] individuals focused on [GOAL] (e.g., weight loss, muscle gain, endurance).",
       "category": "Fitness Plans",
       "subcategory": "Workout Routines",
       "isFeatured": true,
