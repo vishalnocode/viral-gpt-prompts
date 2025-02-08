@@ -40,5 +40,37 @@
     <div id="root"></div>
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script type="module" src="/src/main.tsx"></script>
+
+    <!-- Fixed Footer -->
+    <footer style="position: fixed; bottom: 0; left: 0; width: 100%; background-color: #f8f9fa; padding: 5px 0; border-top: 1px solid #dee2e6;">
+      <div style="display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 15px;">
+        <div>
+          Made with <span style="color: red;">❤</span> by <a href="https://www.linkedin.com/in/vishalagrawalit" target="_blank" style="text-decoration: none; color: #0077b5;">Vishal</a>
+        </div>
+        <div>
+          <!-- Google Ad -->
+          <ins class="adsbygoogle"
+               style="display:inline-block;width:728px;height:60px"
+               data-ad-client="ca-pub-6944005864352096"
+               data-ad-slot="YOUR_AD_SLOT_ID"></ins>
+          <script>
+               (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+        </div>
+      </div>
+    </footer>
+    <style>
+      @media (max-width: 768px) {
+        footer > div {
+          flex-direction: column;
+          gap: 5px;
+          text-align: center;
+        }
+        footer .adsbygoogle,
+        footer > div > div:last-child {
+          display: none !important;
+        }
+      }
+    </style>
   </body>
 </html>
