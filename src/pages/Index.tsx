@@ -161,9 +161,11 @@ const Index = () => {
       {/* All Prompts Section */}
       <div>
         <div className="mb-6">
-          <h2 className="text-2xl font-semibold">
-            All {selectedCategory !== "All" ? `${selectedCategory} ` : ""}Prompts
-          </h2>
+          {selectedCategory === "All" && (
+            <h2 className="text-2xl font-semibold">
+              All Prompts
+            </h2>
+          )}
 
           {/* Subcategory Filter - Only show when a category is selected */}
           {selectedCategory !== "All" && (
