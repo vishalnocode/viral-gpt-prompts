@@ -428,7 +428,7 @@
       "prompt": "Create a monthly budget plan for someone with an income of [AMOUNT], aiming to save [PERCENTAGE] of their income.",
       "category": "Personal Finance",
       "subcategory": "Budgeting",
-      "isFeatured": false,
+      "isFeatured": true,
       "placeholders": [
         "AMOUNT",
         "PERCENTAGE"
@@ -562,7 +562,7 @@
       "prompt": "Create a daily time management plan for someone with a busy schedule, including work, personal tasks, and relaxation time.",
       "category": "Productivity",
       "subcategory": "Time Management",
-      "isFeatured": false,
+      "isFeatured": true,
       "placeholders": []
     },
     {
@@ -756,7 +756,7 @@
       "prompt": "Provide a detailed travel guide for someone visiting [DESTINATION], including cultural highlights, local cuisine, and off-the-beaten-path attractions.",
       "category": "Travel Planning",
       "subcategory": "Destination Research",
-      "isFeatured": false,
+      "isFeatured": true,
       "placeholders": [
         "DESTINATION"
       ]
@@ -947,7 +947,7 @@
       "prompt": "Conduct a competitive analysis of the [PRODUCT] market, highlighting top competitors, pricing strategies, and growth trends within the [INDUSTRY] sector.",
       "category": "Entrepreneurship",
       "subcategory": "Market Research",
-      "isFeatured": false,
+      "isFeatured": true,
       "placeholders": [
         "PRODUCT",
         "INDUSTRY"
