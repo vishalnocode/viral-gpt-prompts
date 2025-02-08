@@ -117,10 +117,10 @@ const Index = () => {
             
             {/* Dropdown for search results */}
             {searchQuery && filteredPrompts.all.length > 0 && (
-              <div className="absolute left-0 right-0 mt-1 bg-background border border-input rounded-md shadow-lg z-10">
+              <div className="absolute left-0 right-0 mt-1 bg-black border border-gray-800 rounded-md shadow-lg z-10">
                 <div className="p-2">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm">{filteredPrompts.all[0].title}</span>
+                    <span className="text-sm text-white">{filteredPrompts.all[0].title}</span>
                     <div className="flex gap-2">
                       <button
                         onClick={() => {
@@ -129,13 +129,13 @@ const Index = () => {
                             description: "Prompt copied to clipboard",
                           });
                         }}
-                        className="p-1 hover:bg-muted rounded-md"
+                        className="p-1 hover:bg-gray-800 rounded-md text-white"
                       >
                         <Copy className="h-4 w-4" />
                       </button>
                       <button
                         onClick={() => window.open("https://chat.openai.com", "_blank")}
-                        className="p-1 hover:bg-muted rounded-md"
+                        className="p-1 hover:bg-gray-800 rounded-md text-white"
                       >
                         <Play className="h-4 w-4" />
                       </button>
