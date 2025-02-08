@@ -8,7 +8,7 @@ import promptData from "@/data/prompts.json";
 import { Button } from "@/components/ui/button";
 import useEmblaCarousel from 'embla-carousel-react';
 import { PromptCard } from "@/components/PromptCard";
-import { PlusCircle, Search } from "lucide-react";
+import { PlusCircle, Search, Copy, Play } from "lucide-react";
 
 // Update type definitions
 type Category = string;
@@ -103,17 +103,47 @@ const Index = () => {
           Filter by category to find the perfect prompt for your needs.
         </p>
         
-        {/* Search input with icon */}
+        {/* Search input with icon and dropdown */}
         <div className="mt-6 mb-8 text-center">
           <div className="relative w-full max-w-md mx-auto">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
             <input
               type="text"
-              placeholder="Search prompts or filter by category ..."
+              placeholder="Search prompts..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full px-10 py-2 rounded-md border border-input bg-background"
             />
+            
+            {/* Dropdown for search results */}
+            {searchQuery && filteredPrompts.all.length > 0 && (
+              <div className="absolute left-0 right-0 mt-1 bg-background border border-input rounded-md shadow-lg z-10">
+                <div className="p-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm">{filteredPrompts.all[0].title}</span>
+                    <div className="flex gap-2">
+                      <button
+                        onClick={() => {
+                          navigator.clipboard.writeText(filteredPrompts.all[0].content);
+                          toast({
+                            description: "Prompt copied to clipboard",
+                          });
+                        }}
+                        className="p-1 hover:bg-muted rounded-md"
+                      >
+                        <Copy className="h-4 w-4" />
+                      </button>
+                      <button
+                        onClick={() => window.open("https://chat.openai.com", "_blank")}
+                        className="p-1 hover:bg-muted rounded-md"
+                      >
+                        <Play className="h-4 w-4" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
