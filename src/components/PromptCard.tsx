@@ -115,14 +115,14 @@ export const PromptCard = ({ prompt, onPromptUsed }: PromptCardProps) => {
             onClick={() => setIsDialogOpen(true)}
             className="p-2 hover:bg-gray-100 rounded-full transition-colors"
           >
-            <Clipboard className="h-5 w-5 text-gray-600" />
+            <Clipboard className="h-5 w-5 text-blue-500" />
           </button>
           {!hasPlaceholders && (
             <button
               onClick={handleRunDirectly}
               className="p-2 hover:bg-gray-100 rounded-full transition-colors"
             >
-              <Play className="h-5 w-5 text-gray-600" />
+              <Play className="h-5 w-5 text-blue-500" />
             </button>
           )}
         </div>
