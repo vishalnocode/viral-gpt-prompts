@@ -1,61 +1,1405 @@
 {
   "categories": [
     {
-      "name": "Writing",
-      "subcategories": ["Blog Posts", "Essays", "Creative Writing", "Technical Writing"]
+      "name": "Resume & Career Advice",
+      "subcategories": [
+        "Resume",
+        "Interview Preparation",
+        "Career Growth",
+        "Job Search Tips",
+        "Cover Letter Writing"
+      ]
     },
     {
-      "name": "Programming",
-      "subcategories": ["Web Development", "Mobile Development", "Data Science", "DevOps"]
+      "name": "Travel Planning",
+      "subcategories": [
+        "Trip Planning",
+        "Destination Research",
+        "Budgeting",
+        "Itinerary",
+        "Packing & Preparation"
+      ]
     },
     {
-      "name": "Business",
-      "subcategories": ["Marketing", "Sales", "Strategy", "Finance"]
+      "name": "Fitness Plans",
+      "subcategories": [
+        "Workout Routines",
+        "Fitness Goals",
+        "Nutrition Plans",
+        "Recovery",
+        "Motivation"
+      ]
     },
     {
-      "name": "Design",
-      "subcategories": ["UI/UX", "Graphic Design", "Logo Design", "Illustration"]
+      "name": "Entrepreneurship",
+      "subcategories": [
+        "Planning",
+        "Market Research",
+        "Funding",
+        "Marketing Strategy",
+        "Growth & Scaling"
+      ]
+    },
+    {
+      "name": "Personal Finance",
+      "subcategories": [
+        "Budgeting",
+        "Saving & Investing",
+        "Financial Goals",
+        "Financial Planning"
+      ]
+    },
+    {
+      "name": "Productivity",
+      "subcategories": [
+        "Time Management",
+        "Task Management",
+        "Goal Setting",
+        "Work Efficiency",
+        "Focus & Motivation"
+      ]
     }
   ],
   "prompts": [
     {
       "id": "1",
-      "title": "Blog Post Outline",
-      "description": "Create a detailed blog post outline with sections and subsections",
-      "prompt": "Create a detailed blog post outline for [TOPIC]. [SUB] Include main sections, subsections, and key points to cover.",
-      "category": "Writing",
-      "subcategory": "Blog Posts",
+      "title": "Professional Resume Creation",
+      "description": "Create a professional resume for a [JOB TITLE] with [YEARS] years of experience. Include key skills, achievements, and work experience.",
+      "prompt": "Create a professional resume for a [JOB TITLE] with [YEARS] years of experience. Include key skills, achievements, and work experience.",
+      "category": "Resume & Career Advice",
+      "subcategory": "Resume",
       "isFeatured": true,
-      "placeholders": ["TOPIC", "SUB"]
+      "placeholders": [
+        "JOB TITLE",
+        "YEARS"
+      ]
     },
     {
       "id": "2",
-      "title": "React Component",
-      "description": "Generate a React component with TypeScript",
-      "prompt": "Create a React component for [FEATURE] using TypeScript and modern best practices.",
-      "category": "Programming",
-      "subcategory": "Web Development",
-      "isFeatured": true
+      "title": "Resume Summary Rewrite",
+      "description": "Rewrite a resume summary for a [JOB TITLE] emphasizing [KEY STRENGTHS] and experience in [INDUSTRY].",
+      "prompt": "Rewrite a resume summary for a [JOB TITLE] emphasizing [KEY STRENGTHS] and experience in [INDUSTRY].",
+      "category": "Resume & Career Advice",
+      "subcategory": "Resume",
+      "isFeatured": false,
+      "placeholders": [
+        "JOB TITLE",
+        "KEY STRENGTHS",
+        "INDUSTRY"
+      ]
     },
     {
       "id": "3",
-      "title": "Marketing Plan",
-      "description": "Create a comprehensive marketing plan template",
-      "prompt": "Generate a detailed marketing plan template for [PRODUCT/SERVICE] including target audience, channels, and KPIs.",
-      "category": "Business",
-      "subcategory": "Marketing",
+      "title": "Modern Resume Layout",
+      "description": "Design a modern resume layout for a [PROFESSION] to highlight [SKILLS] and achievements.",
+      "prompt": "Design a modern resume layout for a [PROFESSION] to highlight [SKILLS] and achievements.",
+      "category": "Resume & Career Advice",
+      "subcategory": "Resume",
       "isFeatured": false,
-      "placeholders": ["PRODUCT/SERVICE"]
+      "placeholders": [
+        "PROFESSION",
+        "SKILLS"
+      ]
     },
     {
       "id": "4",
-      "title": "UI Design System",
-      "description": "Define a consistent UI design system",
-      "prompt": "Create a UI design system specification for [PROJECT] including colors, typography, spacing, and component guidelines.",
-      "category": "Design",
-      "subcategory": "UI/UX",
+      "title": "Interview Question Preparation",
+      "description": "Provide a list of 10 common interview questions for a [JOB TITLE] and suggest strong responses.",
+      "prompt": "Provide a list of 10 common interview questions for a [JOB TITLE] and suggest strong responses.",
+      "category": "Resume & Career Advice",
+      "subcategory": "Interview Preparation",
+      "isFeatured": false,
+      "placeholders": [
+        "JOB TITLE"
+      ]
+    },
+    {
+      "id": "5",
+      "title": "Interview Preparation Checklist",
+      "description": "Create an interview preparation checklist for a [JOB TITLE], including key research areas and tips for answering difficult questions.",
+      "prompt": "Create an interview preparation checklist for a [JOB TITLE], including key research areas and tips for answering difficult questions.",
+      "category": "Resume & Career Advice",
+      "subcategory": "Interview Preparation",
+      "isFeatured": false,
+      "placeholders": [
+        "JOB TITLE"
+      ]
+    },
+    {
+      "id": "6",
+      "title": "Behavioral Interview Answers",
+      "description": "Generate answers for behavioral interview questions for a [JOB TITLE] role, using the STAR method.",
+      "prompt": "Generate answers for behavioral interview questions for a [JOB TITLE] role, using the STAR method.",
+      "category": "Resume & Career Advice",
+      "subcategory": "Interview Preparation",
+      "isFeatured": false,
+      "placeholders": [
+        "JOB TITLE"
+      ]
+    },
+    {
+      "id": "7",
+      "title": "Career Growth Plan",
+      "description": "Suggest a career growth plan for a [JOB TITLE] in [INDUSTRY] aiming for a [SENIOR POSITION] role in 5 years.",
+      "prompt": "Suggest a career growth plan for a [JOB TITLE] in [INDUSTRY] aiming for a [SENIOR POSITION] role in 5 years.",
+      "category": "Resume & Career Advice",
+      "subcategory": "Career Growth",
+      "isFeatured": false,
+      "placeholders": [
+        "JOB TITLE",
+        "INDUSTRY",
+        "SENIOR POSITION"
+      ]
+    },
+    {
+      "id": "8",
+      "title": "Professional Development Strategies",
+      "description": "Provide strategies for professional development in [FIELD], including certifications, courses, and networking opportunities.",
+      "prompt": "Provide strategies for professional development in [FIELD], including certifications, courses, and networking opportunities.",
+      "category": "Resume & Career Advice",
+      "subcategory": "Career Growth",
+      "isFeatured": false,
+      "placeholders": [
+        "FIELD"
+      ]
+    },
+    {
+      "id": "9",
+      "title": "Leadership Skill Building",
+      "description": "Advise on how to build leadership skills for a [JOB TITLE] looking to advance in [INDUSTRY].",
+      "prompt": "Advise on how to build leadership skills for a [JOB TITLE] looking to advance in [INDUSTRY].",
+      "category": "Resume & Career Advice",
+      "subcategory": "Career Growth",
+      "isFeatured": false,
+      "placeholders": [
+        "JOB TITLE",
+        "INDUSTRY"
+      ]
+    },
+    {
+      "id": "10",
+      "title": "Job Search Plan",
+      "description": "Create a 30-day job search plan for a [JOB TITLE], including networking strategies, resume updates, and applying to job openings.",
+      "prompt": "Create a 30-day job search plan for a [JOB TITLE], including networking strategies, resume updates, and applying to job openings.",
+      "category": "Resume & Career Advice",
+      "subcategory": "Job Search Tips",
+      "isFeatured": false,
+      "placeholders": [
+        "JOB TITLE"
+      ]
+    },
+    {
+      "id": "11",
+      "title": "Optimizing LinkedIn Profile",
+      "description": "Give tips for a successful online job search, including how to optimize a LinkedIn profile for maximum visibility.",
+      "prompt": "Give tips for a successful online job search, including how to optimize a LinkedIn profile for maximum visibility.",
+      "category": "Resume & Career Advice",
+      "subcategory": "Job Search Tips",
+      "isFeatured": false,
+      "placeholders": []
+    },
+    {
+      "id": "12",
+      "title": "Job Boards for [INDUSTRY]",
+      "description": "Generate a list of job boards and websites that specialize in [INDUSTRY] jobs for a [JOB TITLE].",
+      "prompt": "Generate a list of job boards and websites that specialize in [INDUSTRY] jobs for a [JOB TITLE].",
+      "category": "Resume & Career Advice",
+      "subcategory": "Job Search Tips",
+      "isFeatured": false,
+      "placeholders": [
+        "INDUSTRY",
+        "JOB TITLE"
+      ]
+    },
+    {
+      "id": "13",
+      "title": "Cover Letter for [COMPANY]",
+      "description": "Write a cover letter for a [JOB TITLE] role at [COMPANY], highlighting relevant skills and experience in [FIELD].",
+      "prompt": "Write a cover letter for a [JOB TITLE] role at [COMPANY], highlighting relevant skills and experience in [FIELD].",
+      "category": "Resume & Career Advice",
+      "subcategory": "Cover Letter Writing",
+      "isFeatured": false,
+      "placeholders": [
+        "JOB TITLE",
+        "COMPANY",
+        "FIELD"
+      ]
+    },
+    {
+      "id": "14",
+      "title": "Tailored Cover Letter for [JOB TITLE]",
+      "description": "Create a tailored cover letter for a [JOB TITLE] position that emphasizes [SPECIFIC EXPERIENCE] and [KEY SKILL].",
+      "prompt": "Create a tailored cover letter for a [JOB TITLE] position that emphasizes [SPECIFIC EXPERIENCE] and [KEY SKILL].",
+      "category": "Resume & Career Advice",
+      "subcategory": "Cover Letter Writing",
+      "isFeatured": false,
+      "placeholders": [
+        "JOB TITLE",
+        "SPECIFIC EXPERIENCE",
+        "KEY SKILL"
+      ]
+    },
+    {
+      "id": "15",
+      "title": "Career Transition Cover Letter",
+      "description": "Generate a cover letter for a career transition to [NEW INDUSTRY], explaining transferable skills from [PREVIOUS INDUSTRY].",
+      "prompt": "Generate a cover letter for a career transition to [NEW INDUSTRY], explaining transferable skills from [PREVIOUS INDUSTRY].",
+      "category": "Resume & Career Advice",
+      "subcategory": "Cover Letter Writing",
+      "isFeatured": false,
+      "placeholders": [
+        "NEW INDUSTRY",
+        "PREVIOUS INDUSTRY"
+      ]
+    },
+    {
+      "id": "16",
+      "title": "4-Week Workout Routine",
+      "description": "Create a 4-week workout routine for [BEGINNER/INTERMEDIATE/ADVANCED] individuals focused on [GOAL] (e.g., weight loss, muscle gain, endurance).",
+      "prompt": "Create a 4-week workout routine for [BEGINNER/INTERMEDIATE/ADVANCED] individuals focused on [GOAL] (e.g., weight loss, muscle gain, endurance).",
+      "category": "Fitness Plans",
+      "subcategory": "Workout Routines",
       "isFeatured": true,
-      "placeholders": ["PROJECT"]
+      "placeholders": [
+        "BEGINNER/INTERMEDIATE/ADVANCED",
+        "GOAL"
+      ]
+    },
+    {
+      "id": "17",
+      "title": "Full-Body Workout Routine",
+      "description": "Design a full-body workout routine using only [EQUIPMENT], targeting strength and flexibility.",
+      "prompt": "Design a full-body workout routine using only [EQUIPMENT], targeting strength and flexibility.",
+      "category": "Fitness Plans",
+      "subcategory": "Workout Routines",
+      "isFeatured": false,
+      "placeholders": [
+        "EQUIPMENT"
+      ]
+    },
+    {
+      "id": "18",
+      "title": "Home Workout Plan",
+      "description": "Generate a home workout plan for a [BEGINNER/INTERMEDIATE/ADVANCED] individual with no equipment, aimed at [GOAL].",
+      "prompt": "Generate a home workout plan for a [BEGINNER/INTERMEDIATE/ADVANCED] individual with no equipment, aimed at [GOAL].",
+      "category": "Fitness Plans",
+      "subcategory": "Workout Routines",
+      "isFeatured": false,
+      "placeholders": [
+        "BEGINNER/INTERMEDIATE/ADVANCED",
+        "GOAL"
+      ]
+    },
+    {
+      "id": "19",
+      "title": "Fitness Goal Plan",
+      "description": "Provide a plan for achieving [SPECIFIC FITNESS GOAL] in 8 weeks with a mix of cardio and strength training.",
+      "prompt": "Provide a plan for achieving [SPECIFIC FITNESS GOAL] in 8 weeks with a mix of cardio and strength training.",
+      "category": "Fitness Plans",
+      "subcategory": "Fitness Goals",
+      "isFeatured": false,
+      "placeholders": [
+        "SPECIFIC FITNESS GOAL"
+      ]
+    },
+    {
+      "id": "20",
+      "title": "Daily Fitness Schedule",
+      "description": "Create a daily fitness schedule for someone looking to improve overall fitness, including warm-ups, workouts, and cool-downs.",
+      "prompt": "Create a daily fitness schedule for someone looking to improve overall fitness, including warm-ups, workouts, and cool-downs.",
+      "category": "Fitness Plans",
+      "subcategory": "Fitness Goals",
+      "isFeatured": false,
+      "placeholders": []
+    },
+    {
+      "id": "21",
+      "title": "Training for [SPECIFIC EVENT]",
+      "description": "Develop a workout and nutrition plan for someone training for a [SPECIFIC EVENT], like a marathon, triathlon, or obstacle course.",
+      "prompt": "Develop a workout and nutrition plan for someone training for a [SPECIFIC EVENT], like a marathon, triathlon, or obstacle course.",
+      "category": "Fitness Plans",
+      "subcategory": "Fitness Goals",
+      "isFeatured": false,
+      "placeholders": [
+        "SPECIFIC EVENT"
+      ]
+    },
+    {
+      "id": "22",
+      "title": "7-Day Meal Plan",
+      "description": "Create a 7-day meal plan for someone focused on [FITNESS GOAL], with high-protein, balanced meals.",
+      "prompt": "Create a 7-day meal plan for someone focused on [FITNESS GOAL], with high-protein, balanced meals.",
+      "category": "Fitness Plans",
+      "subcategory": "Nutrition Plans",
+      "isFeatured": false,
+      "placeholders": [
+        "FITNESS GOAL"
+      ]
+    },
+    {
+      "id": "23",
+      "title": "Nutrition Guide for Muscle Building",
+      "description": "Generate a nutrition guide for pre- and post-workout meals for someone focused on building muscle.",
+      "prompt": "Generate a nutrition guide for pre- and post-workout meals for someone focused on building muscle.",
+      "category": "Fitness Plans",
+      "subcategory": "Nutrition Plans",
+      "isFeatured": false,
+      "placeholders": []
+    },
+    {
+      "id": "24",
+      "title": "Vegan Muscle Growth Meal Plan",
+      "description": "Design a vegan meal plan to support muscle growth, including plant-based protein sources.",
+      "prompt": "Design a vegan meal plan to support muscle growth, including plant-based protein sources.",
+      "category": "Fitness Plans",
+      "subcategory": "Nutrition Plans",
+      "isFeatured": false,
+      "placeholders": []
+    },
+    {
+      "id": "25",
+      "title": "Recovery Plan",
+      "description": "Suggest a recovery plan for a [BEGINNER/INTERMEDIATE/ADVANCED] athlete after a [WORKOUT TYPE] session, including stretches and rest periods.",
+      "prompt": "Suggest a recovery plan for a [BEGINNER/INTERMEDIATE/ADVANCED] athlete after a [WORKOUT TYPE] session, including stretches and rest periods.",
+      "category": "Fitness Plans",
+      "subcategory": "Recovery",
+      "isFeatured": false,
+      "placeholders": [
+        "BEGINNER/INTERMEDIATE/ADVANCED",
+        "WORKOUT TYPE"
+      ]
+    },
+    {
+      "id": "26",
+      "title": "Injury Prevention Guide",
+      "description": "Provide a guide on preventing common workout injuries for [SPECIFIC ACTIVITY] (e.g., running, weightlifting).",
+      "prompt": "Provide a guide on preventing common workout injuries for [SPECIFIC ACTIVITY] (e.g., running, weightlifting).",
+      "category": "Fitness Plans",
+      "subcategory": "Recovery",
+      "isFeatured": false,
+      "placeholders": [
+        "SPECIFIC ACTIVITY"
+      ]
+    },
+    {
+      "id": "27",
+      "title": "Post-Workout Stretching Routine",
+      "description": "Create a post-workout stretching routine to improve flexibility and reduce muscle soreness.",
+      "prompt": "Create a post-workout stretching routine to improve flexibility and reduce muscle soreness.",
+      "category": "Fitness Plans",
+      "subcategory": "Recovery",
+      "isFeatured": false,
+      "placeholders": []
+    },
+    {
+      "id": "28",
+      "title": "Motivational Strategies",
+      "description": "Suggest daily motivational strategies for someone struggling to stay consistent with their fitness routine.",
+      "prompt": "Suggest daily motivational strategies for someone struggling to stay consistent with their fitness routine.",
+      "category": "Fitness Plans",
+      "subcategory": "Motivation",
+      "isFeatured": false,
+      "placeholders": []
+    },
+    {
+      "id": "29",
+      "title": "Mental Resilience Training",
+      "description": "Create a mental resilience training plan for athletes, focusing on overcoming setbacks and staying motivated.",
+      "prompt": "Create a mental resilience training plan for athletes, focusing on overcoming setbacks and staying motivated.",
+      "category": "Fitness Plans",
+      "subcategory": "Motivation",
+      "isFeatured": false,
+      "placeholders": []
+    },
+    {
+      "id": "30",
+      "title": "Building a Positive Fitness Mindset",
+      "description": "Generate a list of tips to build a positive mindset around fitness and self-improvement.",
+      "prompt": "Generate a list of tips to build a positive mindset around fitness and self-improvement.",
+      "category": "Fitness Plans",
+      "subcategory": "Motivation",
+      "isFeatured": false,
+      "placeholders": []
+    },
+    {
+      "id": "31",
+      "title": "Monthly Budget Plan",
+      "description": "Create a monthly budget plan for someone with an income of [AMOUNT], aiming to save [PERCENTAGE] of their income.",
+      "prompt": "Create a monthly budget plan for someone with an income of [AMOUNT], aiming to save [PERCENTAGE] of their income.",
+      "category": "Personal Finance",
+      "subcategory": "Budgeting",
+      "isFeatured": false,
+      "placeholders": [
+        "AMOUNT",
+        "PERCENTAGE"
+      ]
+    },
+    {
+      "id": "32",
+      "title": "Zero-Based Budgeting",
+      "description": "Design a zero-based budgeting plan for an individual looking to allocate their income effectively across categories like housing, savings, and debt repayment.",
+      "prompt": "Design a zero-based budgeting plan for an individual looking to allocate their income effectively across categories like housing, savings, and debt repayment.",
+      "category": "Personal Finance",
+      "subcategory": "Budgeting",
+      "isFeatured": false,
+      "placeholders": []
+    },
+    {
+      "id": "33",
+      "title": "Couple Budget Template",
+      "description": "Generate a budget template for a couple, including shared expenses, savings goals, and discretionary spending.",
+      "prompt": "Generate a budget template for a couple, including shared expenses, savings goals, and discretionary spending.",
+      "category": "Personal Finance",
+      "subcategory": "Budgeting",
+      "isFeatured": false,
+      "placeholders": []
+    },
+    {
+      "id": "37",
+      "title": "Savings Plan",
+      "description": "Design a savings plan for someone wanting to save [AMOUNT] in [TIMEFRAME], considering emergency funds, short-term, and long-term savings goals.",
+      "prompt": "Design a savings plan for someone wanting to save [AMOUNT] in [TIMEFRAME], considering emergency funds, short-term, and long-term savings goals.",
+      "category": "Personal Finance",
+      "subcategory": "Saving & Investing",
+      "isFeatured": false,
+      "placeholders": [
+        "AMOUNT",
+        "TIMEFRAME"
+      ]
+    },
+    {
+      "id": "38",
+      "title": "Investment Strategy for Beginners",
+      "description": "Create an investment strategy for someone new to investing, with an emphasis on low-risk, diversified options for long-term growth.",
+      "prompt": "Create an investment strategy for someone new to investing, with an emphasis on low-risk, diversified options for long-term growth.",
+      "category": "Personal Finance",
+      "subcategory": "Saving & Investing",
+      "isFeatured": false,
+      "placeholders": []
+    },
+    {
+      "id": "39",
+      "title": "Stock Market Investment Plan",
+      "description": "Provide a detailed plan for someone looking to start investing in the stock market with a budget of [AMOUNT], focusing on ETFs and index funds.",
+      "prompt": "Provide a detailed plan for someone looking to start investing in the stock market with a budget of [AMOUNT], focusing on ETFs and index funds.",
+      "category": "Personal Finance",
+      "subcategory": "Saving & Investing",
+      "isFeatured": false,
+      "placeholders": [
+        "AMOUNT"
+      ]
+    },
+    {
+      "id": "40",
+      "title": "Home Down Payment Plan",
+      "description": "Develop a financial plan for someone looking to save for a down payment on a home in [TIMEFRAME], factoring in monthly savings goals.",
+      "prompt": "Develop a financial plan for someone looking to save for a down payment on a home in [TIMEFRAME], factoring in monthly savings goals.",
+      "category": "Personal Finance",
+      "subcategory": "Financial Goals",
+      "isFeatured": false,
+      "placeholders": [
+        "TIMEFRAME"
+      ]
+    },
+    {
+      "id": "41",
+      "title": "Early Retirement Financial Plan",
+      "description": "Create a financial roadmap for someone looking to retire early by [AGE], with a focus on aggressive saving and investing.",
+      "prompt": "Create a financial roadmap for someone looking to retire early by [AGE], with a focus on aggressive saving and investing.",
+      "category": "Personal Finance",
+      "subcategory": "Financial Goals",
+      "isFeatured": false,
+      "placeholders": [
+        "AGE"
+      ]
+    },
+    {
+      "id": "42",
+      "title": "Savings for [SPECIFIC PURCHASE]",
+      "description": "Provide a step-by-step guide to achieving the goal of saving for a [SPECIFIC PURCHASE], such as a car or vacation.",
+      "prompt": "Provide a step-by-step guide to achieving the goal of saving for a [SPECIFIC PURCHASE], such as a car or vacation.",
+      "category": "Personal Finance",
+      "subcategory": "Financial Goals",
+      "isFeatured": false,
+      "placeholders": [
+        "SPECIFIC PURCHASE"
+      ]
+    },
+    {
+      "id": "43",
+      "title": "Small Business Financial Plan",
+      "description": "Create a financial plan for a small business owner, covering budget, expenses, and saving for business growth.",
+      "prompt": "Create a financial plan for a small business owner, covering budget, expenses, and saving for business growth.",
+      "category": "Personal Finance",
+      "subcategory": "Financial Planning",
+      "isFeatured": false,
+      "placeholders": []
+    },
+    {
+      "id": "44",
+      "title": "Yearly Financial Review",
+      "description": "Design a yearly financial review for someone, including tracking expenses, assessing savings, and setting new financial goals.",
+      "prompt": "Design a yearly financial review for someone, including tracking expenses, assessing savings, and setting new financial goals.",
+      "category": "Personal Finance",
+      "subcategory": "Financial Planning",
+      "isFeatured": false,
+      "placeholders": []
+    },
+    {
+      "id": "45",
+      "title": "Couple Financial Planning",
+      "description": "Generate a comprehensive financial plan for a couple planning for their future, including budgeting, retirement, and investment goals.",
+      "prompt": "Generate a comprehensive financial plan for a couple planning for their future, including budgeting, retirement, and investment goals.",
+      "category": "Personal Finance",
+      "subcategory": "Financial Planning",
+      "isFeatured": false,
+      "placeholders": []
+    },
+    {
+      "id": "46",
+      "title": "Daily Time Management Plan",
+      "description": "Create a daily time management plan for someone with a busy schedule, including work, personal tasks, and relaxation time.",
+      "prompt": "Create a daily time management plan for someone with a busy schedule, including work, personal tasks, and relaxation time.",
+      "category": "Productivity",
+      "subcategory": "Time Management",
+      "isFeatured": false,
+      "placeholders": []
+    },
+    {
+      "id": "47",
+      "title": "Weekly Time-Blocking Schedule",
+      "description": "Design a weekly time-blocking schedule for a person trying to balance work, family, and self-care.",
+      "prompt": "Design a weekly time-blocking schedule for a person trying to balance work, family, and self-care.",
+      "category": "Productivity",
+      "subcategory": "Time Management",
+      "isFeatured": false,
+      "placeholders": []
+    },
+    {
+      "id": "48",
+      "title": "Time Management Strategy for Deadlines",
+      "description": "Suggest a time management strategy for someone struggling to meet deadlines, including prioritization techniques and time estimates.",
+      "prompt": "Suggest a time management strategy for someone struggling to meet deadlines, including prioritization techniques and time estimates.",
+      "category": "Productivity",
+      "subcategory": "Time Management",
+      "isFeatured": false,
+      "placeholders": []
+    },
+    {
+      "id": "49",
+      "title": "Task List Template",
+      "description": "Generate a task list template with deadlines for someone managing multiple projects at work, emphasizing priority and organization.",
+      "prompt": "Generate a task list template with deadlines for someone managing multiple projects at work, emphasizing priority and organization.",
+      "category": "Productivity",
+      "subcategory": "Task Management",
+      "isFeatured": false,
+      "placeholders": []
+    },
+    {
+      "id": "50",
+      "title": "Daily Task Management System",
+      "description": "Create a daily task management system using a to-do list with sections for urgent tasks, low-priority tasks, and personal tasks.",
+      "prompt": "Create a daily task management system using a to-do list with sections for urgent tasks, low-priority tasks, and personal tasks.",
+      "category": "Productivity",
+      "subcategory": "Task Management",
+      "isFeatured": false,
+      "placeholders": []
+    },
+    {
+      "id": "51",
+      "title": "Task Organization Strategy",
+      "description": "Provide a strategy for organizing tasks and breaking large projects into smaller, actionable steps, including deadlines.",
+      "prompt": "Provide a strategy for organizing tasks and breaking large projects into smaller, actionable steps, including deadlines.",
+      "category": "Productivity",
+      "subcategory": "Task Management",
+      "isFeatured": false,
+      "placeholders": []
+    },
+    {
+      "id": "52",
+      "title": "6-Month Goal-Setting Plan",
+      "description": "Design a 6-month goal-setting plan for someone wanting to improve their career, including personal milestones and professional targets.",
+      "prompt": "Design a 6-month goal-setting plan for someone wanting to improve their career, including personal milestones and professional targets.",
+      "category": "Productivity",
+      "subcategory": "Goal Setting",
+      "isFeatured": false,
+      "placeholders": []
+    },
+    {
+      "id": "53",
+      "title": "Yearly Goal-Setting Template",
+      "description": "Create a yearly goal-setting template that includes personal, financial, and health-related goals with detailed action steps.",
+      "prompt": "Create a yearly goal-setting template that includes personal, financial, and health-related goals with detailed action steps.",
+      "category": "Productivity",
+      "subcategory": "Goal Setting",
+      "isFeatured": false,
+      "placeholders": []
+    },
+    {
+      "id": "54",
+      "title": "Strategy for Achievable Goals",
+      "description": "Suggest a strategy for setting achievable short-term and long-term goals while maintaining focus and motivation.",
+      "prompt": "Suggest a strategy for setting achievable short-term and long-term goals while maintaining focus and motivation.",
+      "category": "Productivity",
+      "subcategory": "Goal Setting",
+      "isFeatured": false,
+      "placeholders": []
+    },
+    {
+      "id": "55",
+      "title": "Work Efficiency Tips for Remote Work",
+      "description": "Provide a set of work efficiency tips for someone working from home, focusing on creating an optimal workspace and minimizing distractions.",
+      "prompt": "Provide a set of work efficiency tips for someone working from home, focusing on creating an optimal workspace and minimizing distractions.",
+      "category": "Productivity",
+      "subcategory": "Work Efficiency",
+      "isFeatured": false,
+      "placeholders": []
+    },
+    {
+      "id": "56",
+      "title": "Pomodoro Technique for Workplace Efficiency",
+      "description": "Create a plan for improving workplace efficiency by implementing the Pomodoro technique and regular breaks.",
+      "prompt": "Create a plan for improving workplace efficiency by implementing the Pomodoro technique and regular breaks.",
+      "category": "Productivity",
+      "subcategory": "Work Efficiency",
+      "isFeatured": false,
+      "placeholders": []
+    },
+    {
+      "id": "57",
+      "title": "Improving Team Collaboration",
+      "description": "Generate a strategy for improving team collaboration and work efficiency in a remote work environment.",
+      "prompt": "Generate a strategy for improving team collaboration and work efficiency in a remote work environment.",
+      "category": "Productivity",
+      "subcategory": "Work Efficiency",
+      "isFeatured": false,
+      "placeholders": []
+    },
+    {
+      "id": "58",
+      "title": "Boosting Focus and Productivity",
+      "description": "Suggest a daily routine for boosting focus and productivity, including mindfulness exercises and strategies to avoid procrastination.",
+      "prompt": "Suggest a daily routine for boosting focus and productivity, including mindfulness exercises and strategies to avoid procrastination.",
+      "category": "Productivity",
+      "subcategory": "Focus & Motivation",
+      "isFeatured": false,
+      "placeholders": []
+    },
+    {
+      "id": "59",
+      "title": "Motivational Plan to Overcome Procrastination",
+      "description": "Design a motivational plan for someone struggling with procrastination, focusing on breaking tasks into manageable chunks.",
+      "prompt": "Design a motivational plan for someone struggling with procrastination, focusing on breaking tasks into manageable chunks.",
+      "category": "Productivity",
+      "subcategory": "Focus & Motivation",
+      "isFeatured": false,
+      "placeholders": []
+    },
+    {
+      "id": "60",
+      "title": "Motivational Quotes and Strategies",
+      "description": "Create a list of motivational quotes and strategies to keep someone on track with their long-term goals.",
+      "prompt": "Create a list of motivational quotes and strategies to keep someone on track with their long-term goals.",
+      "category": "Productivity",
+      "subcategory": "Focus & Motivation",
+      "isFeatured": false,
+      "placeholders": []
+    },
+    {
+      "id": "61",
+      "title": "Vacation Planning Checklist",
+      "description": "Create a checklist for planning a week-long vacation, including flights, accommodations, activities, and emergency preparations.",
+      "prompt": "Create a checklist for planning a week-long vacation, including flights, accommodations, activities, and emergency preparations.",
+      "category": "Travel Planning",
+      "subcategory": "Trip Planning",
+      "isFeatured": false,
+      "placeholders": []
+    },
+    {
+      "id": "62",
+      "title": "Solo Traveler Trip Planning Template",
+      "description": "Design a trip planning template for a solo traveler visiting [DESTINATION], including must-see sights, transportation options, and budgeting tips.",
+      "prompt": "Design a trip planning template for a solo traveler visiting [DESTINATION], including must-see sights, transportation options, and budgeting tips.",
+      "category": "Travel Planning",
+      "subcategory": "Trip Planning",
+      "isFeatured": false,
+      "placeholders": [
+        "DESTINATION"
+      ]
+    },
+    {
+      "id": "63",
+      "title": "Family Vacation Itinerary",
+      "description": "Provide a detailed travel itinerary for a family of four planning a vacation to [DESTINATION], covering accommodation, activities, and dining options.",
+      "prompt": "Provide a detailed travel itinerary for a family of four planning a vacation to [DESTINATION], covering accommodation, activities, and dining options.",
+      "category": "Travel Planning",
+      "subcategory": "Trip Planning",
+      "isFeatured": false,
+      "placeholders": [
+        "DESTINATION"
+      ]
+    },
+    {
+      "id": "64",
+      "title": "Top Adventure Destinations for 2025",
+      "description": "Research the top 5 travel destinations for adventure seekers in 2025 and outline the best activities in each location.",
+      "prompt": "Research the top 5 travel destinations for adventure seekers in 2025 and outline the best activities in each location.",
+      "category": "Travel Planning",
+      "subcategory": "Destination Research",
+      "isFeatured": false,
+      "placeholders": []
+    },
+    {
+      "id": "65",
+      "title": "Travel Guide for [DESTINATION]",
+      "description": "Provide a detailed travel guide for someone visiting [DESTINATION], including cultural highlights, local cuisine, and off-the-beaten-path attractions.",
+      "prompt": "Provide a detailed travel guide for someone visiting [DESTINATION], including cultural highlights, local cuisine, and off-the-beaten-path attractions.",
+      "category": "Travel Planning",
+      "subcategory": "Destination Research",
+      "isFeatured": false,
+      "placeholders": [
+        "DESTINATION"
+      ]
+    },
+    {
+      "id": "66",
+      "title": "Budget-Friendly Travel Destinations in Europe",
+      "description": "Create a comparison chart for budget-friendly travel destinations in Europe, highlighting accommodation costs, transportation, and sightseeing options.",
+      "prompt": "Create a comparison chart for budget-friendly travel destinations in Europe, highlighting accommodation costs, transportation, and sightseeing options.",
+      "category": "Travel Planning",
+      "subcategory": "Destination Research",
+      "isFeatured": false,
+      "placeholders": []
+    },
+    {
+      "id": "67",
+      "title": "10-Day Packing List for [DESTINATION]",
+      "description": "Design a packing list for a 10-day vacation in [DESTINATION], including clothing, toiletries, and travel essentials.",
+      "prompt": "Design a packing list for a 10-day vacation in [DESTINATION], including clothing, toiletries, and travel essentials.",
+      "category": "Travel Planning",
+      "subcategory": "Packing & Preparation",
+      "isFeatured": false,
+      "placeholders": [
+        "DESTINATION"
+      ]
+    },
+    {
+      "id": "68",
+      "title": "International Trip Preparation Checklist",
+      "description": "Create a checklist for preparing for an international trip, covering passport, visa requirements, and health precautions.",
+      "prompt": "Create a checklist for preparing for an international trip, covering passport, visa requirements, and health precautions.",
+      "category": "Travel Planning",
+      "subcategory": "Packing & Preparation",
+      "isFeatured": false,
+      "placeholders": []
+    },
+    {
+      "id": "69",
+      "title": "Minimalist Packing Guide for [DESTINATION]",
+      "description": "Generate a packing guide for a minimalist traveler planning a 7-day trip to [DESTINATION], focusing on versatile clothing and essential items.",
+      "prompt": "Generate a packing guide for a minimalist traveler planning a 7-day trip to [DESTINATION], focusing on versatile clothing and essential items.",
+      "category": "Travel Planning",
+      "subcategory": "Packing & Preparation",
+      "isFeatured": false,
+      "placeholders": [
+        "DESTINATION"
+      ]
+    },
+    {
+      "id": "70",
+      "title": "Travel Savings Plan for [DESTINATION]",
+      "description": "Create a travel savings plan for someone aiming to visit [DESTINATION] in 6 months, including daily saving goals and budgeting tips.",
+      "prompt": "Create a travel savings plan for someone aiming to visit [DESTINATION] in 6 months, including daily saving goals and budgeting tips.",
+      "category": "Travel Planning",
+      "subcategory": "Budgeting",
+      "isFeatured": false,
+      "placeholders": [
+        "DESTINATION"
+      ]
+    },
+    {
+      "id": "71",
+      "title": "Couple Travel Budget Template",
+      "description": "Design a travel budget template for a couple planning a vacation to [DESTINATION], including flight costs, accommodation, food, and activities.",
+      "prompt": "Design a travel budget template for a couple planning a vacation to [DESTINATION], including flight costs, accommodation, food, and activities.",
+      "category": "Travel Planning",
+      "subcategory": "Budgeting",
+      "isFeatured": false,
+      "placeholders": [
+        "DESTINATION"
+      ]
+    },
+    {
+      "id": "72",
+      "title": "Money-Saving Tips for Traveling to [DESTINATION]",
+      "description": "Suggest ways to save money while traveling on a tight budget in [DESTINATION], focusing on affordable accommodation, local transportation, and free activities.",
+      "prompt": "Suggest ways to save money while traveling on a tight budget in [DESTINATION], focusing on affordable accommodation, local transportation, and free activities.",
+      "category": "Travel Planning",
+      "subcategory": "Budgeting",
+      "isFeatured": false,
+      "placeholders": [
+        "DESTINATION"
+      ]
+    },
+    {
+      "id": "73",
+      "title": "3-Day Itinerary for [DESTINATION]",
+      "description": "Create a detailed 3-day itinerary for a trip to [DESTINATION], including cultural experiences, must-see landmarks, and local food spots.",
+      "prompt": "Create a detailed 3-day itinerary for a trip to [DESTINATION], including cultural experiences, must-see landmarks, and local food spots.",
+      "category": "Travel Planning",
+      "subcategory": "Itinerary",
+      "isFeatured": false,
+      "placeholders": [
+        "DESTINATION"
+      ]
+    },
+    {
+      "id": "74",
+      "title": "5-Day Itinerary for a Couple",
+      "description": "Design a 5-day itinerary for a couple visiting [DESTINATION], balancing sightseeing, relaxation, and local experiences.",
+      "prompt": "Design a 5-day itinerary for a couple visiting [DESTINATION], balancing sightseeing, relaxation, and local experiences.",
+      "category": "Travel Planning",
+      "subcategory": "Itinerary",
+      "isFeatured": false,
+      "placeholders": [
+        "DESTINATION"
+      ]
+    },
+    {
+      "id": "75",
+      "title": "Flexible Itinerary for Friends in [DESTINATION]",
+      "description": "Generate a flexible travel itinerary for a group of friends visiting [DESTINATION], incorporating outdoor activities, dining, and nightlife.",
+      "prompt": "Generate a flexible travel itinerary for a group of friends visiting [DESTINATION], incorporating outdoor activities, dining, and nightlife.",
+      "category": "Travel Planning",
+      "subcategory": "Itinerary",
+      "isFeatured": false,
+      "placeholders": [
+        "DESTINATION"
+      ]
+    },
+    {
+      "id": "91",
+      "title": "Tech Startup Business Plan Outline",
+      "description": "Create a business plan outline for a [INDUSTRY] startup, including executive summary, target market, revenue model, and financial projections.",
+      "prompt": "Create a business plan outline for a [INDUSTRY] startup, including executive summary, target market, revenue model, and financial projections.",
+      "category": "Entrepreneurship",
+      "subcategory": "Planning",
+      "isFeatured": false,
+      "placeholders": [
+        "INDUSTRY"
+      ]
+    },
+    {
+      "id": "92",
+      "title": "12-Month [PRODUCT] Business Strategy",
+      "description": "Design a 12-month business strategy for a [PRODUCT] company, focusing on customer acquisition, operations, and financial goals.",
+      "prompt": "Design a 12-month business strategy for a [PRODUCT] company, focusing on customer acquisition, operations, and financial goals.",
+      "category": "Entrepreneurship",
+      "subcategory": "Planning",
+      "isFeatured": false,
+      "placeholders": [
+        "PRODUCT"
+      ]
+    },
+    {
+      "id": "93",
+      "title": "[PRODUCT] SWOT Analysis",
+      "description": "Generate a SWOT analysis for a [PRODUCT] company, identifying strengths, weaknesses, opportunities, and threats within the [INDUSTRY] market.",
+      "prompt": "Generate a SWOT analysis for a [PRODUCT] company, identifying strengths, weaknesses, opportunities, and threats within the [INDUSTRY] market.",
+      "category": "Entrepreneurship",
+      "subcategory": "Planning",
+      "isFeatured": false,
+      "placeholders": [
+        "PRODUCT",
+        "INDUSTRY"
+      ]
+    },
+    {
+      "id": "94",
+      "title": "[PRODUCT] Brand Mission Statement",
+      "description": "Write a mission statement for a [PRODUCT] brand in the [INDUSTRY] market, emphasizing innovation and customer value.",
+      "prompt": "Write a mission statement for a [PRODUCT] brand in the [INDUSTRY] market, emphasizing innovation and customer value.",
+      "category": "Entrepreneurship",
+      "subcategory": "Planning",
+      "isFeatured": false,
+      "placeholders": [
+        "PRODUCT",
+        "INDUSTRY"
+      ]
+    },
+    {
+      "id": "95",
+      "title": "[PRODUCT] Business Plan Template",
+      "description": "Create a business plan template for a [PRODUCT] business in the [INDUSTRY] market, including sales projections, marketing strategy, and competitive analysis.",
+      "prompt": "Create a business plan template for a [PRODUCT] business in the [INDUSTRY] market, including sales projections, marketing strategy, and competitive analysis.",
+      "category": "Entrepreneurship",
+      "subcategory": "Planning",
+      "isFeatured": false,
+      "placeholders": [
+        "PRODUCT",
+        "INDUSTRY"
+      ]
+    },
+    {
+      "id": "96",
+      "title": "[PRODUCT] Market Competitive Analysis",
+      "description": "Conduct a competitive analysis of the [PRODUCT] market, highlighting top competitors, pricing strategies, and growth trends within the [INDUSTRY] sector.",
+      "prompt": "Conduct a competitive analysis of the [PRODUCT] market, highlighting top competitors, pricing strategies, and growth trends within the [INDUSTRY] sector.",
+      "category": "Entrepreneurship",
+      "subcategory": "Market Research",
+      "isFeatured": false,
+      "placeholders": [
+        "PRODUCT",
+        "INDUSTRY"
+      ]
+    },
+    {
+      "id": "97",
+      "title": "[PRODUCT] Market Research Survey",
+      "description": "Design a market research survey for a [PRODUCT] targeting the [INDUSTRY] sector, focusing on customer needs, preferences, and pain points.",
+      "prompt": "Design a market research survey for a [PRODUCT] targeting the [INDUSTRY] sector, focusing on customer needs, preferences, and pain points.",
+      "category": "Entrepreneurship",
+      "subcategory": "Market Research",
+      "isFeatured": false,
+      "placeholders": [
+        "PRODUCT",
+        "INDUSTRY"
+      ]
+    },
+    {
+      "id": "98",
+      "title": "[PRODUCT] Demographic Analysis",
+      "description": "Provide a detailed demographic analysis of the target market for a [PRODUCT] in the [INDUSTRY] sector, focusing on age, income, and behavior.",
+      "prompt": "Provide a detailed demographic analysis of the target market for a [PRODUCT] in the [INDUSTRY] sector, focusing on age, income, and behavior.",
+      "category": "Entrepreneurship",
+      "subcategory": "Market Research",
+      "isFeatured": false,
+      "placeholders": [
+        "PRODUCT",
+        "INDUSTRY"
+      ]
+    },
+    {
+      "id": "99",
+      "title": "[PRODUCT] Ideal Customer Profile",
+      "description": "Research and create a profile of the ideal customer for a [PRODUCT] in the [MARKET] sector, including purchasing behavior and preferences.",
+      "prompt": "Research and create a profile of the ideal customer for a [PRODUCT] in the [MARKET] sector, including purchasing behavior and preferences.",
+      "category": "Entrepreneurship",
+      "subcategory": "Market Research",
+      "isFeatured": false,
+      "placeholders": [
+        "PRODUCT",
+        "MARKET"
+      ]
+    },
+    {
+      "id": "100",
+      "title": "[PRODUCT] Trends Report",
+      "description": "Generate a report on emerging trends and innovations in the [INDUSTRY] market, focusing on [PRODUCT] categories and technology adoption.",
+      "prompt": "Generate a report on emerging trends and innovations in the [INDUSTRY] market, focusing on [PRODUCT] categories and technology adoption.",
+      "category": "Entrepreneurship",
+      "subcategory": "Market Research",
+      "isFeatured": false,
+      "placeholders": [
+        "INDUSTRY",
+        "PRODUCT"
+      ]
+    },
+    {
+      "id": "101",
+      "title": "[PRODUCT] Investor Pitch Deck",
+      "description": "Create an investor pitch deck for a [PRODUCT] company in the [INDUSTRY] market, including market opportunity, product overview, and financial projections.",
+      "prompt": "Create an investor pitch deck for a [PRODUCT] company in the [INDUSTRY] market, including market opportunity, product overview, and financial projections.",
+      "category": "Entrepreneurship",
+      "subcategory": "Funding",
+      "isFeatured": false,
+      "placeholders": [
+        "PRODUCT",
+        "INDUSTRY"
+      ]
+    },
+    {
+      "id": "102",
+      "title": "[PRODUCT] Crowdfunding Campaign",
+      "description": "Design a crowdfunding campaign strategy for a [PRODUCT] in the [INDUSTRY] market, including reward tiers, goals, and marketing tactics.",
+      "prompt": "Design a crowdfunding campaign strategy for a [PRODUCT] in the [INDUSTRY] market, including reward tiers, goals, and marketing tactics.",
+      "category": "Entrepreneurship",
+      "subcategory": "Funding",
+      "isFeatured": false,
+      "placeholders": [
+        "PRODUCT",
+        "INDUSTRY"
+      ]
+    },
+    {
+      "id": "103",
+      "title": "[PRODUCT] Funding Strategy",
+      "description": "Outline a funding strategy for a [PRODUCT] startup in the [MARKET] sector, covering seed funding options, venture capital, and other investment avenues.",
+      "prompt": "Outline a funding strategy for a [PRODUCT] startup in the [MARKET] sector, covering seed funding options, venture capital, and other investment avenues.",
+      "category": "Entrepreneurship",
+      "subcategory": "Funding",
+      "isFeatured": false,
+      "placeholders": [
+        "PRODUCT",
+        "MARKET"
+      ]
+    },
+    {
+      "id": "104",
+      "title": "[PRODUCT] Angel Investor Pitch",
+      "description": "Generate an angel investor pitch for a [PRODUCT] in the [INDUSTRY] market, focusing on market size, scalability, and innovation.",
+      "prompt": "Generate an angel investor pitch for a [PRODUCT] in the [INDUSTRY] market, focusing on market size, scalability, and innovation.",
+      "category": "Entrepreneurship",
+      "subcategory": "Funding",
+      "isFeatured": false,
+      "placeholders": [
+        "PRODUCT",
+        "INDUSTRY"
+      ]
+    },
+    {
+      "id": "105",
+      "title": "[PRODUCT] Financial Forecast",
+      "description": "Create a financial forecast for a [PRODUCT] startup in the [INDUSTRY] sector, projecting revenue, expenses, and profits over the next three years.",
+      "prompt": "Create a financial forecast for a [PRODUCT] startup in the [INDUSTRY] sector, projecting revenue, expenses, and profits over the next three years.",
+      "category": "Entrepreneurship",
+      "subcategory": "Funding",
+      "isFeatured": false,
+      "placeholders": [
+        "PRODUCT",
+        "INDUSTRY"
+      ]
+    },
+    {
+      "id": "106",
+      "title": "Blog Post on [TOPIC]",
+      "description": "Create a 1000-word blog post about [TOPIC] for a [GENRE] audience, focusing on informative content with actionable takeaways.",
+      "prompt": "Create a 1000-word blog post about [TOPIC] for a [GENRE] audience, focusing on informative content with actionable takeaways.",
+      "category": "Writing & Creative Content",
+      "subcategory": "Blog Writing",
+      "isFeatured": false,
+      "placeholders": [
+        "TOPIC",
+        "GENRE"
+      ]
+    },
+    {
+      "id": "107",
+      "title": "Blog Post Outline for [TOPIC]",
+      "description": "Generate an outline for a blog post on [TOPIC] for a [GENRE] audience, including an introduction, main points, and conclusion.",
+      "prompt": "Generate an outline for a blog post on [TOPIC] for a [GENRE] audience, including an introduction, main points, and conclusion.",
+      "category": "Writing & Creative Content",
+      "subcategory": "Blog Writing",
+      "isFeatured": false,
+      "placeholders": [
+        "TOPIC",
+        "GENRE"
+      ]
+    },
+    {
+      "id": "108",
+      "title": "Blog Introduction for [TOPIC]",
+      "description": "Write an engaging blog introduction for [TOPIC] that speaks to [GENRE] readers, providing a compelling reason to keep reading.",
+      "prompt": "Write an engaging blog introduction for [TOPIC] that speaks to [GENRE] readers, providing a compelling reason to keep reading.",
+      "category": "Writing & Creative Content",
+      "subcategory": "Blog Writing",
+      "isFeatured": false,
+      "placeholders": [
+        "TOPIC",
+        "GENRE"
+      ]
+    },
+    {
+      "id": "109",
+      "title": "Blog FAQs for [TOPIC]",
+      "description": "Draft a comprehensive list of FAQs for a blog post about [TOPIC], tailored for a [GENRE] audience.",
+      "prompt": "Draft a comprehensive list of FAQs for a blog post about [TOPIC], tailored for a [GENRE] audience.",
+      "category": "Writing & Creative Content",
+      "subcategory": "Blog Writing",
+      "isFeatured": false,
+      "placeholders": [
+        "TOPIC",
+        "GENRE"
+      ]
+    },
+    {
+      "id": "110",
+      "title": "Blog Call-to-Action for [TOPIC]",
+      "description": "Write a call-to-action for a blog post on [TOPIC], encouraging [GENRE] readers to share or comment on the post.",
+      "prompt": "Write a call-to-action for a blog post on [TOPIC], encouraging [GENRE] readers to share or comment on the post.",
+      "category": "Writing & Creative Content",
+      "subcategory": "Blog Writing",
+      "isFeatured": false,
+      "placeholders": [
+        "TOPIC",
+        "GENRE"
+      ]
+    },
+    {
+      "id": "111",
+      "title": "[GENRE] Short Story Opening",
+      "description": "Write the opening paragraph of a [GENRE] short story set in [SETTING], introducing the main character and setting the tone.",
+      "prompt": "Write the opening paragraph of a [GENRE] short story set in [SETTING], introducing the main character and setting the tone.",
+      "category": "Writing & Creative Content",
+      "subcategory": "Creative Writing",
+      "isFeatured": false,
+      "placeholders": [
+        "GENRE",
+        "SETTING"
+      ]
+    },
+    {
+      "id": "112",
+      "title": "[GENRE] Novel Plot Outline",
+      "description": "Generate a plot outline for a [GENRE] novel, focusing on the protagonist's journey, obstacles, and ultimate goal.",
+      "prompt": "Generate a plot outline for a [GENRE] novel, focusing on the protagonist's journey, obstacles, and ultimate goal.",
+      "category": "Writing & Creative Content",
+      "subcategory": "Creative Writing",
+      "isFeatured": false,
+      "placeholders": [
+        "GENRE"
+      ]
+    },
+    {
+      "id": "113",
+      "title": "[GENRE] Character Profile",
+      "description": "Create a character profile for the main protagonist in a [GENRE] novel, including personality, backstory, and motivations.",
+      "prompt": "Create a character profile for the main protagonist in a [GENRE] novel, including personality, backstory, and motivations.",
+      "category": "Writing & Creative Content",
+      "subcategory": "Creative Writing",
+      "isFeatured": false,
+      "placeholders": [
+        "GENRE"
+      ]
+    },
+    {
+      "id": "114",
+      "title": "[GENRE] Story Setting Description",
+      "description": "Write a vivid description of the setting in a [GENRE] story, detailing the atmosphere, sights, and sounds of the environment.",
+      "prompt": "Write a vivid description of the setting in a [GENRE] story, detailing the atmosphere, sights, and sounds of the environment.",
+      "category": "Writing & Creative Content",
+      "subcategory": "Creative Writing",
+      "isFeatured": false,
+      "placeholders": [
+        "GENRE"
+      ]
+    },
+    {
+      "id": "115",
+      "title": "[GENRE] Dialogue Exchange",
+      "description": "Write a dialogue exchange between two characters in a [GENRE] story, where they discuss a major turning point in the plot.",
+      "prompt": "Write a dialogue exchange between two characters in a [GENRE] story, where they discuss a major turning point in the plot.",
+      "category": "Writing & Creative Content",
+      "subcategory": "Creative Writing",
+      "isFeatured": false,
+      "placeholders": [
+        "GENRE"
+      ]
+    },
+    {
+      "id": "116",
+      "title": "Instagram Captions for [TOPIC]",
+      "description": "Create a set of 5 engaging Instagram post captions for [TOPIC], designed to resonate with a [GENRE] audience.",
+      "prompt": "Create a set of 5 engaging Instagram post captions for [TOPIC], designed to resonate with a [GENRE] audience.",
+      "category": "Writing & Creative Content",
+      "subcategory": "Social Media Content",
+      "isFeatured": false,
+      "placeholders": [
+        "TOPIC",
+        "GENRE"
+      ]
+    },
+    {
+      "id": "117",
+      "title": "Twitter Thread on [TOPIC]",
+      "description": "Write a Twitter thread on [TOPIC], with each tweet adding a unique perspective for [GENRE] readers.",
+      "prompt": "Write a Twitter thread on [TOPIC], with each tweet adding a unique perspective for [GENRE] readers.",
+      "category": "Writing & Creative Content",
+      "subcategory": "Social Media Content",
+      "isFeatured": false,
+      "placeholders": [
+        "TOPIC",
+        "GENRE"
+      ]
+    },
+    {
+      "id": "118",
+      "title": "Facebook Posts for [TOPIC]",
+      "description": "Generate 3 creative Facebook post ideas for [TOPIC] that appeal to a [GENRE] audience and encourage engagement.",
+      "prompt": "Generate 3 creative Facebook post ideas for [TOPIC] that appeal to a [GENRE] audience and encourage engagement.",
+      "category": "Writing & Creative Content",
+      "subcategory": "Social Media Content",
+      "isFeatured": false,
+      "placeholders": [
+        "TOPIC",
+        "GENRE"
+      ]
+    },
+    {
+      "id": "119",
+      "title": "Pinterest Pin Descriptions for [TOPIC]",
+      "description": "Create 5 Pinterest pin descriptions for [TOPIC] that will attract [GENRE] audience, focusing on keywords and visuals.",
+      "prompt": "Create 5 Pinterest pin descriptions for [TOPIC] that will attract [GENRE] audience, focusing on keywords and visuals.",
+      "category": "Writing & Creative Content",
+      "subcategory": "Social Media Content",
+      "isFeatured": false,
+      "placeholders": [
+        "TOPIC",
+        "GENRE"
+      ]
+    },
+    {
+      "id": "120",
+      "title": "TikTok Script for [TOPIC]",
+      "description": "Write a TikTok script on [TOPIC], with a fun and relatable tone for a [GENRE] audience.",
+      "prompt": "Write a TikTok script on [TOPIC], with a fun and relatable tone for a [GENRE] audience.",
+      "category": "Writing & Creative Content",
+      "subcategory": "Social Media Content",
+      "isFeatured": false,
+      "placeholders": [
+        "TOPIC",
+        "GENRE"
+      ]
+    },
+    {
+      "id": "121",
+      "title": "Landing Page Copy for [PRODUCT]",
+      "description": "Write a landing page copy for a [PRODUCT] targeting [GENRE] customers, with a clear and persuasive call to action.",
+      "prompt": "Write a landing page copy for a [PRODUCT] targeting [GENRE] customers, with a clear and persuasive call to action.",
+      "category": "Writing & Creative Content",
+      "subcategory": "Copywriting",
+      "isFeatured": false,
+      "placeholders": [
+        "PRODUCT",
+        "GENRE"
+      ]
+    },
+    {
+      "id": "122",
+      "title": "Tagline for [PRODUCT]",
+      "description": "Generate a tagline for [PRODUCT] that resonates with a [GENRE] audience, capturing the essence of the brand.",
+      "prompt": "Generate a tagline for [PRODUCT] that resonates with a [GENRE] audience, capturing the essence of the brand.",
+      "category": "Writing & Creative Content",
+      "subcategory": "Copywriting",
+      "isFeatured": false,
+      "placeholders": [
+        "PRODUCT",
+        "GENRE"
+      ]
+    },
+    {
+      "id": "123",
+      "title": "Email Campaign for [PRODUCT]",
+      "description": "Create an email campaign for [PRODUCT], designed to persuade [GENRE] customers to sign up or purchase.",
+      "prompt": "Create an email campaign for [PRODUCT], designed to persuade [GENRE] customers to sign up or purchase.",
+      "category": "Writing & Creative Content",
+      "subcategory": "Copywriting",
+      "isFeatured": false,
+      "placeholders": [
+        "PRODUCT",
+        "GENRE"
+      ]
+    },
+    {
+      "id": "124",
+      "title": "Product Description for [PRODUCT]",
+      "description": "Write a compelling product description for [PRODUCT] that appeals to a [GENRE] audience, emphasizing its features and benefits.",
+      "prompt": "Write a compelling product description for [PRODUCT] that appeals to a [GENRE] audience, emphasizing its features and benefits.",
+      "category": "Writing & Creative Content",
+      "subcategory": "Copywriting",
+      "isFeatured": false,
+      "placeholders": [
+        "PRODUCT",
+        "GENRE"
+      ]
+    },
+    {
+      "id": "125",
+      "title": "YouTube Ad Script for [PRODUCT]",
+      "description": "Create a script for a YouTube ad for [PRODUCT], aimed at a [GENRE] audience, with a strong call to action.",
+      "prompt": "Create a script for a YouTube ad for [PRODUCT], aimed at a [GENRE] audience, with a strong call to action.",
+      "category": "Writing & Creative Content",
+      "subcategory": "Copywriting",
+      "isFeatured": false,
+      "placeholders": [
+        "PRODUCT",
+        "GENRE"
+      ]
+    },
+    {
+      "id": "126",
+      "title": "Content Marketing Strategy for [TOPIC]",
+      "description": "Write a content marketing strategy for [TOPIC], with a focus on blog posts, guest articles, and social media, for a [GENRE] audience.",
+      "prompt": "Write a content marketing strategy for [TOPIC], with a focus on blog posts, guest articles, and social media, for a [GENRE] audience.",
+      "category": "Writing & Creative Content",
+      "subcategory": "Content Marketing",
+      "isFeatured": false,
+      "placeholders": [
+        "TOPIC",
+        "GENRE"
+      ]
+    },
+    {
+      "id": "127",
+      "title": "Blog Post Ideas for [TOPIC]",
+      "description": "Generate a list of 10 blog post ideas for [TOPIC] that would resonate with a [GENRE] audience, providing value and insights.",
+      "prompt": "Generate a list of 10 blog post ideas for [TOPIC] that would resonate with a [GENRE] audience, providing value and insights.",
+      "category": "Writing & Creative Content",
+      "subcategory": "Content Marketing",
+      "isFeatured": false,
+      "placeholders": [
+        "TOPIC",
+        "GENRE"
+      ]
+    },
+    {
+      "id": "128",
+      "title": "Editorial Calendar for [TOPIC]",
+      "description": "Create an editorial calendar for a [TOPIC] content campaign, including blog posts, videos, and social media, targeted to a [GENRE] audience.",
+      "prompt": "Create an editorial calendar for a [TOPIC] content campaign, including blog posts, videos, and social media, targeted to a [GENRE] audience.",
+      "category": "Writing & Creative Content",
+      "subcategory": "Content Marketing",
+      "isFeatured": false,
+      "placeholders": [
+        "TOPIC",
+        "GENRE"
+      ]
+    },
+    {
+      "id": "129",
+      "title": "Lead Magnet for [TOPIC]",
+      "description": "Write a lead magnet (eBook, checklist, guide) on [TOPIC], specifically for a [GENRE] audience, to encourage email list signups.",
+      "prompt": "Write a lead magnet (eBook, checklist, guide) on [TOPIC], specifically for a [GENRE] audience, to encourage email list signups.",
+      "category": "Writing & Creative Content",
+      "subcategory": "Content Marketing",
+      "isFeatured": false,
+      "placeholders": [
+        "TOPIC",
+        "GENRE"
+      ]
+    },
+    {
+      "id": "130",
+      "title": "Social Media Contest for [TOPIC]",
+      "description": "Create a social media contest campaign around [TOPIC], targeting [GENRE] audience and encouraging user-generated content.",
+      "prompt": "Create a social media contest campaign around [TOPIC], targeting [GENRE] audience and encouraging user-generated content.",
+      "category": "Writing & Creative Content",
+      "subcategory": "Content Marketing",
+      "isFeatured": false,
+      "placeholders": [
+        "TOPIC",
+        "GENRE"
+      ]
+    },
+    {
+      "name": "Writing & Creative Content",
+      "subcategories": [
+        "Blog Writing",
+        "Creative Writing",
+        "Social Media Content",
+        "Copywriting",
+        "Content Marketing"
+      ]
     }
   ]
-} 
+}

@@ -9,9 +9,8 @@ import {
 
 export const ShareButton = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const shareUrl = "https://storied-tulumba-972953.netlify.app/";
+  const shareUrl = "https://viralgptprompts.com";
   const title = "Free collection of Viral ChatGPT prompts.";
-  const shareImage = "./src/assets";
   const description = "Discover the best ChatGPT prompts for resume writing, business, marketing, and more.";
 
   return (
@@ -42,6 +41,7 @@ export const ShareButton = () => {
         <FacebookShareButton 
           url={shareUrl} 
           quote={title}
+          description={description}
           hashtag="#ChatGPT"
         >
           <div className="p-3 bg-primary text-white rounded-full hover:bg-primary/90">
