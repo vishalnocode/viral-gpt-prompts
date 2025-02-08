@@ -47,9 +47,11 @@
         <div>
           Made with <span style="color: red;">❤</span> by <a href="https://www.linkedin.com/in/vishalagrawalit" target="_blank" style="text-decoration: none; color: #0077b5;">Vishal</a>
         </div>
-        <div>
+        <div style="flex: 1; display: flex; justify-content: flex-end;">
           <!-- Ad space placeholder -->
-          <div style="display: inline-block; width: 728px; height: 60px;"></div>
+          <div class="product-hunt-ad" style="width: 728px; height: 60px;">
+            <a href="https://www.producthunt.com/posts/viral-chatgpt-prompts?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-viral&#0045;chatgpt&#0045;prompts" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=861941&theme=dark&t=1739027222760" alt="Viral&#0032;ChatGPT&#0032;Prompts - Personalize&#0032;&#0038;&#0032;run&#0032;AI&#0032;prompts&#0032;instantly&#0044;&#0032;no&#0032;more&#0032;copy&#0045;editing | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
+          </div>
         </div>
       </div>
     </footer>
@@ -60,9 +62,13 @@
           gap: 5px;
           text-align: center;
         }
-        footer .adsbygoogle,
+        .product-hunt-ad {
+          display: none; /* Hide the ad on mobile */
+        }
+      }
+      @media (min-width: 769px) {
         footer > div > div:last-child {
-          display: none !important;
+          justify-content: flex-end; /* Align the ad to the right on larger screens */
         }
       }
     </style>
