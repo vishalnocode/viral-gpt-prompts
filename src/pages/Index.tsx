@@ -34,6 +34,7 @@ const Index = () => {
   });
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [selectedPrompt, setSelectedPrompt] = useState<Prompt | null>(null);
+  const [isSearchResultsVisible, setIsSearchResultsVisible] = useState(false);
 
   useEffect(() => {
     if (!emblaApi) return;
@@ -42,6 +43,19 @@ const Index = () => {
       setSelectedIndex(emblaApi.selectedScrollSnap());
     });
   }, [emblaApi]);
+
+  // Add click outside handler
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const searchContainer = document.querySelector('.search-container');
+      if (searchContainer && !searchContainer.contains(event.target as Node)) {
+        setIsSearchResultsVisible(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   // Get subcategories for current category
   const availableSubcategories = useMemo(() => {
@@ -108,18 +122,21 @@ const Index = () => {
         
         {/* Search input with icon and dropdown */}
         <div className="mt-6 mb-8 text-center">
-          <div className="relative w-full max-w-md mx-auto">
+          <div className="relative w-full max-w-md mx-auto search-container">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
             <input
               type="text"
               placeholder="Search prompts..."
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={(e) => {
+                setSearchQuery(e.target.value);
+                setIsSearchResultsVisible(true);
+              }}
               className="w-full px-10 py-2 rounded-md border border-input bg-background"
             />
             
-            {/* Dropdown for search results */}
-            {searchQuery && (
+            {/* Updated dropdown visibility condition */}
+            {searchQuery && isSearchResultsVisible && (
               <div className="absolute left-0 right-0 mt-1 bg-black border border-gray-800 rounded-md shadow-lg z-10">
                 <div className="p-2">
                   {filteredPrompts.all.length > 0 ? (
