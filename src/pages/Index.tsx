@@ -53,16 +53,14 @@ const Index = () => {
     const handleClickOutside = (event: MouseEvent) => {
       const searchContainer = document.querySelector('.search-container');
       if (searchContainer && !searchContainer.contains(event.target as Node)) {
-        // Only hide if there are no search results
-        if (searchResults.length === 0) {
-          setIsSearchResultsVisible(false);
-        }
+        // Hide the dropdown when clicking outside
+        setIsSearchResultsVisible(false);
       }
     };
 
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [searchResults.length]);
+  }, []); // Removed dependency on searchResults.length
 
   useEffect(() => {
     if (!emblaApi) return;
@@ -139,6 +137,7 @@ const Index = () => {
                 setSearchQuery(e.target.value);
                 setIsSearchResultsVisible(true);
               }}
+              onClick={() => setIsSearchResultsVisible(true)} // Show dropdown on input click
               className="w-full px-10 py-2 rounded-md border border-input bg-background"
             />
             
