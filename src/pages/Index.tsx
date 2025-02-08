@@ -8,7 +8,7 @@ import promptData from "@/data/prompts.json";
 import { Button } from "@/components/ui/button";
 import useEmblaCarousel from 'embla-carousel-react';
 import { PromptCard } from "@/components/PromptCard";
-import { PlusCircle } from "lucide-react";
+import { PlusCircle, Search } from "lucide-react";
 
 // Update type definitions
 type Category = string;
@@ -103,15 +103,18 @@ const Index = () => {
           Filter by category to find the perfect prompt for your needs.
         </p>
         
-        {/* Add search input */}
-        <div className="mt-6">
-          <input
-            type="text"
-            placeholder="Search prompts or filter by category ..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full max-w-md px-4 py-2 rounded-md border border-input bg-background"
-          />
+        {/* Search input with icon */}
+        <div className="mt-6 mb-8 text-center">
+          <div className="relative w-full max-w-md mx-auto">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+            <input
+              type="text"
+              placeholder="Search prompts or filter by category ..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full px-10 py-2 rounded-md border border-input bg-background"
+            />
+          </div>
         </div>
       </div>
 
