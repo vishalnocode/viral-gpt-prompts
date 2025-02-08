@@ -20,6 +20,7 @@ type CategoryData = {
 const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState<Category>("All");
   const [selectedSubcategory, setSelectedSubcategory] = useState<Subcategory>("All");
+  const [searchQuery, setSearchQuery] = useState("");
   const [isAdmin] = useState(false);
   const { toast } = useToast();
   const [categories] = useState<CategoryData[]>(promptData.categories);
@@ -50,12 +51,21 @@ const Index = () => {
 
   // Update filtering logic
   const filteredPrompts = useMemo(() => {
-    let filtered = selectedCategory === "All"
-      ? prompts
-      : prompts.filter(prompt => prompt.category === selectedCategory);
+    // First filter by search query
+    let filtered = searchQuery
+      ? prompts.filter(prompt => 
+          (prompt.title?.toLowerCase().includes(searchQuery.toLowerCase()) || false) ||
+          (prompt.content?.toLowerCase().includes(searchQuery.toLowerCase()) || false)
+        )
+      : prompts;
 
-    // Featured prompts should only be filtered by category, not subcategory
-    const featured = filtered.filter(prompt => prompt.isFeatured).slice(0, 3);  // Limit to 3 featured prompts
+    // Then filter by category
+    filtered = selectedCategory === "All"
+      ? filtered
+      : filtered.filter(prompt => prompt.category === selectedCategory);
+
+    // Featured prompts should only be filtered by category and search, not subcategory
+    const featured = filtered.filter(prompt => prompt.isFeatured).slice(0, 3);
 
     // Apply subcategory filter only to the main list
     if (selectedSubcategory !== "All") {
@@ -66,7 +76,7 @@ const Index = () => {
       all: filtered,
       featured: featured
     };
-  }, [prompts, selectedCategory, selectedSubcategory]);
+  }, [prompts, selectedCategory, selectedSubcategory, searchQuery]);
 
   const handleAddPrompt = (newPrompt: { title: string; content: string; category: Category }) => {
     setPrompts([
@@ -92,6 +102,17 @@ const Index = () => {
           Discover and share powerful ChatGPT prompts that deliver exceptional results.
           Filter by category to find the perfect prompt for your needs.
         </p>
+        
+        {/* Add search input */}
+        <div className="mt-6">
+          <input
+            type="text"
+            placeholder="Search prompts or filter by category ..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full max-w-md px-4 py-2 rounded-md border border-input bg-background"
+          />
+        </div>
       </div>
 
       {isAdmin && <AddPromptForm onSubmit={handleAddPrompt} />}
