@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import useEmblaCarousel from 'embla-carousel-react';
 import { PromptCard } from "@/components/PromptCard";
 import { PlusCircle, Search, Copy, Play } from "lucide-react";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 // Update type definitions
 type Category = string;
@@ -31,6 +32,8 @@ const Index = () => {
     loop: true,
     skipSnaps: false,
   });
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [selectedPrompt, setSelectedPrompt] = useState<Prompt | null>(null);
 
   useEffect(() => {
     if (!emblaApi) return;
@@ -120,31 +123,18 @@ const Index = () => {
               <div className="absolute left-0 right-0 mt-1 bg-black border border-gray-800 rounded-md shadow-lg z-10">
                 <div className="p-2">
                   {filteredPrompts.all.length > 0 ? (
-                    <div className="flex items-center justify-between">
+                    <button
+                      onClick={() => {
+                        setIsDialogOpen(true);
+                        setSelectedPrompt(filteredPrompts.all[0]);
+                      }}
+                      className="w-full text-left hover:bg-gray-800 rounded-md p-2 transition-colors"
+                    >
                       <span className="text-base font-medium text-white">{filteredPrompts.all[0].title}</span>
-                      <div className="flex gap-2">
-                        <button
-                          onClick={() => {
-                            navigator.clipboard.writeText(filteredPrompts.all[0].content);
-                            toast({
-                              description: "Prompt copied to clipboard",
-                            });
-                          }}
-                          className="p-1 hover:bg-gray-800 rounded-md text-white"
-                        >
-                          <Copy className="h-4 w-4" />
-                        </button>
-                        <button
-                          onClick={() => window.open("https://chat.openai.com", "_blank")}
-                          className="p-1 hover:bg-gray-800 rounded-md text-white"
-                        >
-                          <Play className="h-4 w-4" />
-                        </button>
-                      </div>
-                    </div>
+                    </button>
                   ) : (
                     <div className="text-center py-2">
-                      <p className="text-white text-sm">No matches found. Try using the filters below to find the best prompt for your needs.</p>
+                      <p className="text-white text-sm">No matches found. Try using the filters above to find the best prompt for your needs.</p>
                     </div>
                   )}
                 </div>
@@ -255,6 +245,21 @@ const Index = () => {
 
         <PromptGrid prompts={filteredPrompts.all} />
       </div>
+
+      {/* PromptCard Dialog */}
+      {selectedPrompt && (
+        <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+          <DialogContent>
+            <PromptCard 
+              prompt={selectedPrompt}
+              onPromptUsed={(id) => {
+                setIsDialogOpen(false);
+                // Handle any other prompt usage logic
+              }}
+            />
+          </DialogContent>
+        </Dialog>
+      )}
     </div>
   );
 };
