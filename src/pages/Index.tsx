@@ -68,23 +68,15 @@ const Index = () => {
 
   // Update filtering logic
   const filteredPrompts = useMemo(() => {
-    // First filter by search query
-    let filtered = searchQuery
-      ? prompts.filter(prompt => 
-          (prompt.title?.toLowerCase().includes(searchQuery.toLowerCase()) || false) ||
-          (prompt.content?.toLowerCase().includes(searchQuery.toLowerCase()) || false)
-        )
-      : prompts;
+    // Filter by category
+    let filtered = selectedCategory === "All"
+      ? prompts
+      : prompts.filter(prompt => prompt.category === selectedCategory);
 
-    // Then filter by category
-    filtered = selectedCategory === "All"
-      ? filtered
-      : filtered.filter(prompt => prompt.category === selectedCategory);
-
-    // Featured prompts should only be filtered by category and search, not subcategory
+    // Featured prompts should only be filtered by category, not subcategory
     const featured = filtered.filter(prompt => prompt.isFeatured).slice(0, 3);
 
-    // Apply subcategory filter only to the main list
+    // Apply subcategory filter to the main list
     if (selectedSubcategory !== "All") {
       filtered = filtered.filter(prompt => prompt.subcategory === selectedSubcategory);
     }
@@ -93,7 +85,19 @@ const Index = () => {
       all: filtered,
       featured: featured
     };
-  }, [prompts, selectedCategory, selectedSubcategory, searchQuery]);
+  }, [prompts, selectedCategory, selectedSubcategory]);
+
+  // New function for search results
+  const searchResults = useMemo(() => {
+    if (!searchQuery) return [];
+    
+    return prompts
+      .filter(prompt => 
+        (prompt.title?.toLowerCase().includes(searchQuery.toLowerCase()) || false) ||
+        (prompt.content?.toLowerCase().includes(searchQuery.toLowerCase()) || false)
+      )
+      .slice(0, 3); // Limit to 3 results
+  }, [prompts, searchQuery]);
 
   const handleAddPrompt = (newPrompt: { title: string; content: string; category: Category }) => {
     setPrompts([
@@ -135,23 +139,26 @@ const Index = () => {
               className="w-full px-10 py-2 rounded-md border border-input bg-background"
             />
             
-            {/* Updated dropdown visibility condition */}
+            {/* Updated dropdown content */}
             {searchQuery && isSearchResultsVisible && (
               <div className="absolute left-0 right-0 mt-1 bg-black border border-gray-800 rounded-md shadow-lg z-10">
                 <div className="p-2">
-                  {filteredPrompts.all.length > 0 ? (
-                    <button
-                      onClick={() => {
-                        setIsDialogOpen(true);
-                        setSelectedPrompt(filteredPrompts.all[0]);
-                      }}
-                      className="w-full text-left hover:bg-gray-800 rounded-md p-2 transition-colors"
-                    >
-                      <span className="text-base font-medium text-white">{filteredPrompts.all[0].title}</span>
-                    </button>
+                  {searchResults.length > 0 ? (
+                    searchResults.map((prompt) => (
+                      <button
+                        key={prompt.id}
+                        onClick={() => {
+                          setIsDialogOpen(true);
+                          setSelectedPrompt(prompt);
+                        }}
+                        className="w-full text-left hover:bg-gray-800 rounded-md p-2 transition-colors mb-1 last:mb-0"
+                      >
+                        <span className="text-base font-medium text-white">{prompt.title}</span>
+                      </button>
+                    ))
                   ) : (
                     <div className="text-center py-2">
-                      <p className="text-white text-sm">No matches found. Try using the filters below to find the best prompt for your requirements.</p>
+                      <p className="text-white text-sm">No matches found. Try different search terms.</p>
                     </div>
                   )}
                 </div>
@@ -168,6 +175,8 @@ const Index = () => {
         onCategoryChange={(category) => {
           setSelectedCategory(category);
           setSelectedSubcategory("All");
+          setSearchQuery("");
+          setIsSearchResultsVisible(false);
         }}
         categories={categories}
       />
