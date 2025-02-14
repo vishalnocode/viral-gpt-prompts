@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Clipboard, Play } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import {
@@ -32,9 +32,16 @@ interface PromptCardProps {
     placeholders?: string[];
   };
   onPromptUsed?: (id: string) => void;
+  hidePrompt?: boolean;
+  showDescription?: boolean;
 }
 
-export const PromptCard = ({ prompt, onPromptUsed }: PromptCardProps) => {
+export const PromptCard = ({ 
+  prompt, 
+  onPromptUsed, 
+  hidePrompt = false,
+  showDescription = false 
+}: PromptCardProps) => {
   const [placeholderValues, setPlaceholderValues] = useState<Record<string, string>>({});
   const [finalPrompt, setFinalPrompt] = useState(prompt.prompt);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -127,7 +134,12 @@ export const PromptCard = ({ prompt, onPromptUsed }: PromptCardProps) => {
           )}
         </div>
       </div>
-      <p className="text-gray-400">{prompt.prompt}</p>
+      {showDescription && (
+        <p className="text-gray-400">{prompt.description}</p>
+      )}
+      {!hidePrompt && (
+        <p className="text-gray-400">{prompt.prompt}</p>
+      )}
 
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogContent className="rounded-xl sm:rounded-2xl h-[100dvh] sm:h-auto sm:max-h-[80vh]">
@@ -137,7 +149,7 @@ export const PromptCard = ({ prompt, onPromptUsed }: PromptCardProps) => {
           <div className="space-y-4 overflow-y-auto max-h-[calc(100dvh-8rem)] sm:max-h-[60vh] pr-2">
             <div className="space-y-2">
               <p className="font-medium">Final Prompt:</p>
-              <p className="text-gray-400 bg-gray-800 p-3 rounded">{finalPrompt}</p>
+              <p className="text-gray-600 bg-white p-3 rounded border">{finalPrompt}</p>
             </div>
             
             {(prompt.placeholders || []).map((placeholder) => (

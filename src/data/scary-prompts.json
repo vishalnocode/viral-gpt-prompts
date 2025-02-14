@@ -1,0 +1,119 @@
+{
+  "prompts": [
+    {
+      "id": "1",
+      "title": "Money Making Prompt #1",
+      "description": "Uncover hidden strategies that generate wealth without being widely recognized.",
+      "prompt": "What are the most powerful money-making loopholes people overlook?",
+      "category": "Scary",
+      "subcategory": "AI Takeover",
+      "isFeatured": true
+    },
+    {
+      "id": "2",
+      "title": "Money Making Prompt #2",
+      "description": "Identify valuable expertise that can be acquired independently and lead to success.",
+      "prompt": "What are 10 high-income skills that require zero formal education?",
+      "category": "Scary",
+      "subcategory": "AI Takeover",
+      "isFeatured": true
+    },
+    {
+      "id": "3",
+      "title": "Money Making Prompt #3",
+      "description": "Explore how an online business model can thrive in a competitive market.",
+      "prompt": "How can a side hustle combining dropshipping and influencer marketing yield $25K/month in the [beauty] industry?",
+      "category": "Scary",
+      "subcategory": "AI Takeover",
+      "placeholders": ["beauty"],
+      "isFeatured": true
+    },
+    {
+      "id": "4",
+      "title": "Startup Ideas Prompt #1",
+      "description": "Find an innovative approach to generating steady revenue with minimal investment.",
+      "prompt": "What unconventional digital product idea can generate $10k/month in the [self-help] market with minimal upfront costs?",
+      "category": "Scary",
+      "subcategory": "AI Takeover",
+      "placeholders": ["self-help"],
+      "isFeatured": true
+    },
+    {
+      "id": "5",
+      "title": "Startup Ideas Prompt #2",
+      "description": "Design a sustainable business plan that is adaptable to future advancements in technology.",
+      "prompt": "Design a 2030-proof business model for [niche] that exploits AI's next unethical breakthrough?",
+      "category": "Scary",
+      "subcategory": "AI Takeover",
+      "placeholders": ["niche"],
+      "isFeatured": true
+    },
+    {
+      "id": "6",
+      "title": "Startup Ideas Prompt #3",
+      "description": "Build a profitable venture within a short time frame by leveraging unique opportunities.",
+      "prompt": "What morally grey side hustle that could generate $20K/month from [niche] within 90 days?",
+      "category": "Scary",
+      "subcategory": "AI Takeover",
+      "placeholders": ["niche"],
+      "isFeatured": true
+    },
+    {
+      "id": "7",
+      "title": "Trading Prompt #1",
+      "description": "Create a system to analyze market fluctuations based on past trends and indicators.",
+      "prompt": "Build a mean-reversion algo strategy for [crypto/stock] with Bollinger Bands, ATR trailing stops, and confirmation from stochastic oscillator",
+      "category": "Scary",
+      "subcategory": "AI Takeover",
+      "placeholders": ["crypto/stock"],
+      "isFeatured": true
+    },
+    {
+      "id": "8",
+      "title": "Trading Prompt #2",
+      "description": "Spot investment opportunities by combining multiple financial metrics and insider data.",
+      "prompt": "Identify undervalued stocks in the [sector] using a Piotroski F-score screen combined with insider buying signals and low P/E ratios.",
+      "category": "Scary",
+      "subcategory": "AI Takeover",
+      "placeholders": ["sector"],
+      "isFeatured": true
+    },
+    {
+      "id": "9",
+      "title": "Trading Prompt #3",
+      "description": "Use advanced models to predict price changes based on multiple market signals.",
+      "prompt": "Predict [asset] price movement for the next [N] hours using an LSTM model trained on OHLCV data, sentiment scores and VIX volatility",
+      "category": "Scary",
+      "subcategory": "AI Takeover",
+      "placeholders": ["asset", "N"],
+      "isFeatured": true
+    },
+    {
+      "id": "10",
+      "title": "Psychological Experiment #1",
+      "description": "Investigate unsettling studies that reveal the darker side of human behavior.",
+      "prompt": "What's the scariest psychological experiment that was never shut down?",
+      "category": "Scary",
+      "subcategory": "AI Takeover",
+      "isFeatured": true
+    },
+    {
+      "id": "11",
+      "title": "Psychological Experiment #2",
+      "description": "Explore the subtle ways of influencing emotions through non-verbal cues.",
+      "prompt": "How can you make someone feel guilty without saying a word?",
+      "category": "Scary",
+      "subcategory": "AI Takeover",
+      "isFeatured": true
+    },
+    {
+      "id": "12",
+      "title": "Psychological Experiment #3",
+      "description": "Delve into the impact of silent actions in manipulating feelings and responses.",
+      "prompt": "How can you make someone feel guilty without saying a word?",
+      "category": "Scary",
+      "subcategory": "AI Takeover",
+      "isFeatured": true
+    }
+  ]
+}

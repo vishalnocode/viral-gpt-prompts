@@ -10,6 +10,7 @@ import useEmblaCarousel from 'embla-carousel-react';
 import { PromptCard } from "@/components/PromptCard";
 import { PlusCircle, Search, Copy, Play } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { ScaryPromptsLink } from "@/components/ScaryPromptsLink";
 
 // Update type definitions
 type Category = string;
@@ -167,6 +168,10 @@ const Index = () => {
               </div>
             )}
           </div>
+        </div>
+
+        <div className="mb-8">
+          <ScaryPromptsLink />
         </div>
       </div>
 
