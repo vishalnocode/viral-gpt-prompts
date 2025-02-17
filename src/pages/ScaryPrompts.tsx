@@ -132,7 +132,7 @@ const ScaryPrompts = () => {
             </div>
           </div>
           <p className="text-center max-w-md text-xl font-medium text-purple-400 animate-pulse">
-            You are entering into a realm of nerve-wracking, hidden prompts that can change your life forever...
+            You are entering into a realm of dark & powerful prompts.
           </p>
         </div>
       ) : (
@@ -195,9 +195,9 @@ const ScaryPrompts = () => {
             <div className="space-y-4">
               {/* Header */}
               <div className="space-y-2">
-                <h2 className="text-xl text-white centre">
+                <h3 className="text-white centre">
                   Subscribe now to get <strong>five new dark & powerful prompts every week</strong> in your inbox.
-                </h2>
+                </h3>
               </div>
 
               {/* Subscription Form */}
