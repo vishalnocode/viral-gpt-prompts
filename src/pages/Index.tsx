@@ -82,12 +82,20 @@ const Index = () => {
 
   // Update filtering logic
   const filteredPrompts = useMemo(() => {
-    // Filter by category
-    let filtered = selectedCategory === "All"
-      ? prompts
-      : prompts.filter(prompt => prompt.category === selectedCategory);
+    // First filter by search query
+    let filtered = searchQuery
+      ? prompts.filter(prompt => 
+          (prompt.title?.toLowerCase().includes(searchQuery.toLowerCase()) || false) ||
+          (prompt.content?.toLowerCase().includes(searchQuery.toLowerCase()) || false)
+        )
+      : prompts;
 
-    // Featured prompts should only be filtered by category, not subcategory
+    // Then filter by category
+    filtered = selectedCategory === "All"
+      ? filtered
+      : filtered.filter(prompt => prompt.category === selectedCategory);
+
+    // Featured prompts should be filtered by search and category
     const featured = filtered.filter(prompt => prompt.isFeatured).slice(0, 3);
 
     // Apply subcategory filter to the main list
@@ -99,7 +107,7 @@ const Index = () => {
       all: filtered,
       featured: featured
     };
-  }, [prompts, selectedCategory, selectedSubcategory]);
+  }, [prompts, selectedCategory, selectedSubcategory, searchQuery]); // Added searchQuery dependency
 
   const handleAddPrompt = (newPrompt: { title: string; content: string; category: Category }) => {
     setPrompts([
